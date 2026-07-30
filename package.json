@@ -1,0 +1,63 @@
+{
+  "name": "journal",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "prepare": "husky",
+    "update": "npm update",
+    "upgrade:deps": "npx npm-check-updates -i && npm install",
+    "cypress": "npx cypress run",
+    "ci:test": "start-server-and-test dev http://localhost:5173 test",
+    "test": "pwd",
+    "sync:version": "git pull && node scripts/sync-version.js && git add package.json && git commit -m \"build: update version\""
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^3.1.1",
+    "@next/mdx": "^16.2.12",
+    "@semantic-release/changelog": "^7.0.0",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^11.0.1",
+    "@semantic-release/github": "^12.0.9",
+    "@semantic-release/release-notes-generator": "^14.1.1",
+    "@tailwindcss/typography": "^0.5.20",
+    "chalk": "^6.0.0",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^1.28.0",
+    "moment": "^2.30.1",
+    "next": "16.2.12",
+    "next-mdx-remote": "^6.0.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "semantic-release": "^25.0.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.12",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "@commitlint/cli": "^21.2.1",
+    "@commitlint/config-conventional": "^19.0.0",
+    "husky": "^9.1.7"
+  },
+  "overrides": {
+    "brace-expansion": "^5.0.8",
+    "postcss": "^8.5.24",
+    "sharp": "^0.35.3",
+    "tar": "^7.5.21",
+    "npm": {
+      "tar": "^7.5.21",
+      "brace-expansion": "^5.0.8"
+    }
+  }
+}

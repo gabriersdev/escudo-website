@@ -1,0 +1,74 @@
+---
+title: 'Complete Guide to Ghost Installation'
+description: 'Learn how to install and configure Ghost from scratch with this comprehensive step-by-step tutorial.'
+date: '28 JUL 2026'
+author: 'THE JOURNAL'
+readTime: '5 MIN READ'
+featured: false
+topic: 'Installation'
+---
+
+# Getting Started with Ghost
+
+Welcome to the ultimate **Ghost installation tutorial**. In this guide, we will walk you through the process of setting up Ghost on your own server. Whether you are a beginner or a seasoned developer, this tutorial has something for everyone.
+
+## Prerequisites for Installation
+
+Before we begin, you need to ensure that your server meets the necessary requirements.
+
+Here is a quick checklist of what you'll need:
+* A server running Ubuntu 22.04
+* `Node.js` installed (version 18.x is recommended)
+* A registered domain name
+* NGINX and MySQL installed
+
+### Server Setup
+
+Setting up your server correctly is crucial for a smooth installation experience.
+
+1. **Update your packages:** Always start by updating your package lists.
+2. **Install NGINX:** This will act as your reverse proxy.
+3. **Install MySQL:** Ghost uses MySQL to store all your data.
+
+> "A well-prepared server is the foundation of a stable and performant Ghost publication." - *The Ghost Team*
+
+## Installation Steps
+
+Let's dive into the installation process. We will use the Ghost-CLI, a command-line tool that makes installing and updating Ghost incredibly easy.
+
+First, you need to install the Ghost-CLI globally using `npm`:
+
+```bash
+sudo npm install -g ghost-cli@latest
+```
+
+After the CLI is installed, you can proceed to install Ghost in your preferred directory. Create a directory and give it the appropriate permissions:
+
+```bash
+sudo mkdir -p /var/www/ghost
+sudo chown $USER:$USER /var/www/ghost
+sudo chmod 775 /var/www/ghost
+cd /var/www/ghost
+```
+
+Now, run the installation command:
+
+```bash
+ghost install
+```
+
+During the installation, you'll be prompted to enter your blog URL, MySQL credentials, and other basic configuration settings.
+
+### Adding Media and Visuals
+
+Ghost allows you to create visually appealing content. For example, you can easily embed images in your posts:
+
+![Ghost Logo](https://www.wikimedia.org/static/images/wmf-logo.png)
+
+### Useful Links
+
+If you run into any issues during the setup, there are plenty of resources available to help you out:
+- Check out the [Official Ghost Documentation](https://ghost.org/docs/).
+- Visit the [Ghost Developer Forum](https://forum.ghost.org/) to ask questions and share your experiences.
+
+Good luck with your new Ghost publication!
