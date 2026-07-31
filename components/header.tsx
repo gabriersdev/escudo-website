@@ -45,7 +45,7 @@ export function Header() {
             <Link
               key={i}
               href={href}
-              className={"text-xs font-semibold text-gray-900 uppercase tracking-widest hover:text-blue-600 transition-colors " + ((i === self.length - 1) ? " hidden md:inline-block" : "")}
+              className={"text-xs font-semibold text-gray-900 uppercase tracking-wide hover:text-blue-600 transition-colors " + ((i === self.length - 1) ? " hidden md:inline-block" : "")}
             >
               {label}
             </Link>

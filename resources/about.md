@@ -1,14 +1,14 @@
-Journal is a minimal, typography-heavy newsletter theme for Ghost. In addition to being fully responsive and styled, it comes with a few optional bells and whistles that are explained below.
+O Journal é um tema de newsletter minimalista, com foco em tipografia para o Ghost. Além de ser totalmente responsivo e estilizado, ele vem com alguns recursos extras opcionais que são explicados abaixo.
 
-## Highlight your latest post
-To help guide your audience to your latest piece of writing, Journal highlights the most recently published post with larger typography to draw the eye and showcase your content.
+## Destaque sua publicação mais recente
+Para ajudar a guiar seu público para o seu texto mais recente, o Journal destaca a publicação mais recente com uma tipografia maior para atrair a atenção e exibir seu conteúdo.
 
 ## Widgets
-There are three built-in widgets in Journal that will be displayed in the right sidebar of the homepage.
+Existem três widgets integrados no Journal que serão exibidos na barra lateral direita da página inicial.
 
-- **About** - displays a little introduction of the newsletter containing publication icon, title, description, and email subscription input
-- **Featured posts** - all featured posts will be displayed. Read more about featured posts [here](#).
-- **Links** - all available tags will be displayed with the count of posts in alphabetical order
+- **Sobre** - exibe uma pequena introdução da newsletter contendo o ícone da publicação, título, descrição e campo de inscrição por e-mail
+- **Publicações em destaque** - todas as publicações em destaque serão exibidas. Leia mais sobre as publicações em destaque [aqui](#).
+- **Links** - todas as tags disponíveis serão exibidas com a contagem de publicações em ordem alfabética
 
-## Email subscription box
-On the bottom, there's a full-width email subscription box with a punchy background color. A great call to action to enrich your members even more.
+## Caixa de inscrição de e-mail
+Na parte inferior, há uma caixa de inscrição de e-mail de largura total com uma cor de fundo marcante. Um ótimo apelo à ação para enriquecer ainda mais seus membros.

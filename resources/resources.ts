@@ -1,15 +1,15 @@
-const siteUrl = "https://your-url.com";
+const siteUrl = "https://escudo.sabara.com";
 
 const contacts = {
-  "mail": "your-email@domain.com",
-  "repo": "#",
+  "mail": "gabriel@lts.app.br",
+  "repo": "https://github.com/gabriersdev/escudo-website",
 }
 
 const appConfigs = {
-  "app-name": "The Journal",
-  "app-name-slug": "the-journal",
-  "title": "The Journal - Thoughts, stories and ideas",
-  "description": "The latest issues, stories, and ideas from The Journal.",
+  "app-name": "Escudo",
+  "app-name-slug": "escudo-website",
+  "title": "Escudo - Segurança Digital acessível",
+  "description": "As últimas notícias, artigos e postagens do Escudo.",
   
   "locale": "pt-BR",
   "timezone": "America/Sao_Paulo",

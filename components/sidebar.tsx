@@ -14,7 +14,7 @@ type SidebarProps = {
 function SidebarAbout({author}: { author?: SidebarProps['author'] }) {
   return (
     <section className="mb-12">
-      <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">
+      <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-6 border-b border-gray-100 pb-2">
         {author ? dictionary.sidebar.aboutAuthor : dictionary.sidebar.about}
       </h3>
       <div className="flex items-center space-x-3 mb-4">
@@ -44,7 +44,7 @@ function SidebarFeatures({features}: { features: NonNullable<SidebarProps['featu
   return (
     <section>
       <div className="mb-12">
-        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">{dictionary.sidebar.features}</h3>
+        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-6 border-b border-gray-100 pb-2">{dictionary.sidebar.features}</h3>
         <div className="space-y-6">
           {features
             .toSpliced(3)
@@ -77,7 +77,7 @@ function SidebarTopics({topics}: { topics: NonNullable<SidebarProps['topics']> }
   return (
     <section>
       <div>
-        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">{dictionary.sidebar.topics}</h3>
+        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-6 border-b border-gray-100 pb-2">{dictionary.sidebar.topics}</h3>
         <div className="space-y-3">
           {topics
             .toSorted((a, b) => b.count - a.count)

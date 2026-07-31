@@ -7,7 +7,7 @@ export const authors: {
   {
     name: "The Journal",
     slug: "the-journal",
-    bio: "Thoughts, stories and ideas from the editorial team.",
+    bio: "Pensamentos, histórias e ideias da equipe editorial.",
     avatar: null,
   }
 ];

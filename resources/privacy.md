@@ -1,9 +1,19 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Este documento estabelece os Termos de Serviço e a Política de Privacidade para a utilização do nosso site.
 
-## Terms of Service
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## Termos de Serviço
+Ao acessar e utilizar nosso site, você concorda em cumprir estes termos. Nosso serviço é fornecido "no estado em que se encontra", sem garantias de qualquer tipo. O conteúdo disponível aqui tem propósito estritamente informativo.
 
-## Privacy Policy
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+Não nos responsabilizamos por eventuais danos ou prejuízos decorrentes do uso das informações aqui disponibilizadas. O uso do site é de sua inteira responsabilidade.
 
-Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+## Política de Privacidade
+Nós levamos a sua privacidade a sério. O nosso site foi desenvolvido com foco na transparência e no respeito aos seus dados.
+
+**Coleta e Armazenamento de Dados:**
+- Não utilizamos cookies.
+- Não utilizamos ferramentas de rastreamento de sessão.
+- Não coletamos, não processamos e não armazenamos nenhuma informação pessoal identificável de nossos visitantes.
+- Não compartilhamos dados com terceiros.
+
+Sua navegação é totalmente anônima. Qualquer comunicação direta feita por você, como o envio de um e-mail de contato, será tratada com confidencialidade e utilizada exclusivamente para responder à sua solicitação, não sendo armazenada em nenhum banco de dados do site.
+
+Dúvidas? Entre em contato através do e-mail [gabriel@lts.app.br](mailto:gabriel@lts.app.br).

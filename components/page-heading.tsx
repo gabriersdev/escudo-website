@@ -10,6 +10,16 @@ interface PageHeadingProps {
   description: React.ReactNode;
 }
 
+const breadcrumbTranslations: Record<string, string> = {
+  home: 'Início',
+  topic: 'Tópico',
+  about: 'Sobre',
+  authors: 'Autores',
+  posts: 'Postagens',
+  privacy: 'Privacidade',
+  collection: 'Coleção'
+};
+
 export function PageHeading({title, description}: PageHeadingProps) {
   const pathname = usePathname();
   const segments = pathname ? pathname.split('/').filter(Boolean) : [];
@@ -45,14 +55,14 @@ export function PageHeading({title, description}: PageHeadingProps) {
     <div className="mb-10">
       <div className="mb-5 text-sm flex flex-wrap gap-1 items-center max-w-xl">
         <Link href="/" className="text-blue-400 hover:text-blue-500 transition-colors">
-          Home
+          {breadcrumbTranslations['home'] || 'Home'}
         </Link>
         
         {segments.map((segment, index) => {
           const isLast = index === segments.length - 1;
           const href = `/${segments.slice(0, index + 1).join('/')}`;
           
-          const label = segment
+          const label = breadcrumbTranslations[segment.toLowerCase()] || segment
             .split('-')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ');
