@@ -22,7 +22,7 @@ export function FeaturedPost({slug, metadata}: FeaturedPostProps) {
         </h1>
       </Link>
       
-      <p className="text-xl md:text-2xl text-gray-700 leading-snug mb-6 max-w-3xl">
+      <p className="text-xl md:text-xl text-gray-700 leading-snug mb-6 max-w-3xl tracking-tight line-clamp-3">
         {metadata.description}
       </p>
       

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const contentPath = path.join(process.cwd(), 'resources', 'about.md');
+  const contentPath = path.join(process.cwd(), 'resources', 'about.mdx');
   const content = fs.readFileSync(contentPath, 'utf8');
 
   return (

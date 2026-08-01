@@ -3,6 +3,7 @@ import Link from 'next/link';
 import {NewsletterForm} from './newsletter';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
+import Image from "next/image";
 
 type SidebarProps = {
   features?: { title: string; date: string; readTime: string; slug: string; description: string }[];
@@ -18,11 +19,11 @@ function SidebarAbout({author}: { author?: SidebarProps['author'] }) {
         {author ? dictionary.sidebar.aboutAuthor : dictionary.sidebar.about}
       </h3>
       <div className="flex items-center space-x-3 mb-4">
-        <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white font-bold text-xl overflow-hidden relative">
+        <div className="w-12 h-12 aspect-square rounded-full flex items-center justify-center overflow-hidden relative shrink-0 bg-transparent">
           {author?.avatar ? (
-            <img src={author.avatar} alt={author.name} className="w-full h-full object-cover"/>
+            <Image src={author.avatar} alt={author.name} width={500} height={500} className="w-full h-full object-contain"/>
           ) : (
-            <div className="w-8 h-8 rounded-full border-2 border-white"></div>
+            <Image src={"/logo-bloco.png"} alt={"Logo do projeto"} width={500} height={500} className="w-full h-full object-contain"/>
           )}
         </div>
         <div>

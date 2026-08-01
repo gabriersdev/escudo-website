@@ -38,7 +38,7 @@
 
 .markdown-content a {
     color: #2563eb; /* text-blue-600 */
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .markdown-content a:hover {
@@ -107,4 +107,8 @@
     color: #6b7280; /* text-gray-500 */
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+}
+
+.markdown-content hr {
+    color: #e5e7eb;
 }

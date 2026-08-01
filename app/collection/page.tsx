@@ -8,6 +8,7 @@ import {NewsletterSection} from '@/components/newsletter';
 import {Metadata} from 'next';
 import {PageHeading} from '@/components/page-heading';
 import {appConfigs} from "@/resources/resources";
+import {dictionary} from "@/resources/dictionary";
 
 export const metadata: Metadata = {
   title: `Collection | ${appConfigs["app-name"]}`,
@@ -35,8 +36,8 @@ export default function CollectionPage() {
           
           <div className="w-full lg:flex-1 lg:pr-16">
             <PageHeading
-              title="Collection"
-              description={`All ${posts.length} posts published so far`}
+              title={dictionary.collection.title}
+              description={dictionary.collection.description.replace("{{count}}", posts.length.toString())}
             />
             
             <div className="flex flex-col mt-8">

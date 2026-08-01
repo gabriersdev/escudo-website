@@ -8,8 +8,8 @@ const contacts = {
 const appConfigs = {
   "app-name": "Escudo",
   "app-name-slug": "escudo-website",
-  "title": "Escudo - Segurança Digital acessível",
-  "description": "As últimas notícias, artigos e postagens do Escudo.",
+  "title": "Escudo - Educação em Segurança Cibernética para uso digital online",
+  "description": "As notícias, artigos e postagens do Escudo.",
   
   "locale": "pt-BR",
   "timezone": "America/Sao_Paulo",

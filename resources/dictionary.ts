@@ -21,8 +21,8 @@ export const dictionary = {
     aboutAuthor: "Sobre o Autor",
     about: "Sobre",
     author: "Autor",
-    thoughts: "Pensamentos, histórias e ideias.",
-    signUp: "Inscreva-se agora para ter acesso à biblioteca de edições exclusivas para membros.",
+    thoughts: "Educação em Segurança Cibernética para uso digital online",
+    signUp: "Inscreva-se agora e receba as novas postagens antes de todo mundo.",
     post: "publicação",
     posts: "publicações",
   },
@@ -30,10 +30,10 @@ export const dictionary = {
     read: "ler",
   },
   newsletter: {
-    subscribeTitle: "Inscreva-se no The Journal",
-    subscribeDescription: "Não perca as últimas edições. Inscreva-se agora para ter acesso à biblioteca de edições exclusivas para membros.",
+    subscribeTitle: "Inscreva-se na newsletter do Escudo",
+    subscribeDescription: "Não perca nada. Inscreva-se agora e receba as novas postagens antes de todo mundo.",
     subscribeButton: "Inscreva-se",
-    placeholder: "jamie@exemplo.com",
+    placeholder: "seuemail@email.com",
     subscribedAlert: "Inscrito com",
   },
   search: {
@@ -50,6 +50,20 @@ export const dictionary = {
     previous: "Anterior",
     next: "PRÓXIMA",
   },
+  collection: {
+    title: "Coleção",
+    description: "Todas as {{count}} publicações publicadas até agora",
+  },
+  authors: {
+    title: "Nossos Autores",
+    description: "Quem escreve aqui?",
+  },
+  author: {
+    title: "Publicações de {{name}}",
+    descriptionSingle: "{{count}} publicação publicada",
+    descriptionPlural: "{{count}} publicações publicadas",
+    noPosts: "Nenhuma publicação encontrada para este autor.",
+  },
   about: {
     title: "Sobre nós",
   },
@@ -62,7 +76,7 @@ export const dictionary = {
   },
   share: {
     failedToCopy: "Falha ao copiar o texto!",
-    copied: "Copiado!",
+    copied: "Link copiado!",
     shareButton: "Compartilhar",
     readArticle: "Leia o artigo que encontrei:",
     shareOn: "Compartilhar no",

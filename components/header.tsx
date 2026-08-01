@@ -3,6 +3,7 @@ import {getPosts} from '@/libs/mdx';
 import {SearchModal} from './search-modal';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
+import Image from "next/image";
 
 export function Header() {
   const posts = getPosts();
@@ -19,7 +20,7 @@ export function Header() {
           {/* Logo */}
           <div className="w-1/3 text-center">
             <Link href="/" className="text-2xl font-bold tracking-tight text-black">
-              {appConfigs["app-name"]}
+              <Image src={"/logo-horizontal.png"} alt={"Logo do Escudo"} width={500} height={500} className={"w-40 h-10 object-contain mx-auto"}/>
             </Link>
           </div>
           

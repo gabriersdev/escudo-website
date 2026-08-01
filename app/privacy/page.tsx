@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Privacy() {
-  const contentPath = path.join(process.cwd(), 'resources', 'privacy.md');
+  const contentPath = path.join(process.cwd(), 'resources', 'privacy.mdx');
   const content = fs.readFileSync(contentPath, 'utf8');
   
   

@@ -75,7 +75,7 @@ export function generateStaticParams() {
 
 export default async function Post({params}: PageProps) {
   const {slug} = await params;
-  const guidePath = path.join(process.cwd(), 'resources', 'guide.md');
+  const guidePath = path.join(process.cwd(), 'resources', 'post-info.mdx');
   const guideContent = fs.readFileSync(guidePath, 'utf8');
   const posts = getPosts();
   const postIndex = posts.findIndex(p => p.slug === slug);
@@ -157,18 +157,18 @@ export default async function Post({params}: PageProps) {
             <MDXRemote source={post.content}/>
           </div>
           
-          <hr className="my-16 border-gray-100 max-w-3xl mx-auto"/>
-          
           {/* Internal Footer for post */}
-          <div className="max-w-3xl mx-auto flex flex-col gap-8">
-            <div className="markdown-content">
-              <MDXRemote source={guideContent}/>
-            </div>
-            
+          <div className="max-w-3xl mx-auto flex flex-col gap-8 mt-16">
             <div>
               <span className={"text-gray-500 font-medium tracking-wide uppercase text-[12px]"}>{dictionary.post.share}</span>
               <SocialShare title={post.metadata.title}/>
+              <hr className="mt-8 border-gray-100 max-w-3xl mx-auto"/>
             </div>
+            
+            <div className="markdown-content opacity-75">
+              <MDXRemote source={guideContent}/>
+            </div>
+            
           </div>
           
           <div className="flex flex-wrap justify-between items-center mt-10 pt-8 border-t border-gray-300">

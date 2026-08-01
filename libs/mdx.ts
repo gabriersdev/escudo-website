@@ -22,21 +22,17 @@ export type PostData = {
 const POSTS_DIR = path.join(process.cwd(), 'app', 'posts');
 
 function getMDXFiles(dir: string): string[] {
-  if (!fs.existsSync(dir)) {
-    return [];
-  }
+  if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
 }
 
 export function readMDXFile(filePath: string): PostData | null {
-  if (!fs.existsSync(filePath)) {
-    return null;
-  }
+  if (!fs.existsSync(filePath)) return null;
   const rawContent = fs.readFileSync(filePath, 'utf-8');
-  const { data, content } = matter(rawContent);
-
+  const {data, content} = matter(rawContent);
+  
   const slug = path.basename(filePath, path.extname(filePath));
-
+  
   const metadata: PostMetadata = {
     title: data.title || '',
     description: data.description || '',
@@ -47,8 +43,8 @@ export function readMDXFile(filePath: string): PostData | null {
     featured: data.featured || false,
     topic: data.topic || 'General',
   };
-
-  return { metadata, content, slug };
+  
+  return {metadata, content, slug};
 }
 
 export function getPosts(): PostData[] {
@@ -73,13 +69,12 @@ export function getTopics() {
   const topicsMap: Record<string, number> = {};
   
   posts.forEach((post) => {
-    const topic = post.metadata.topic || 'General';
-    if (!topicsMap[topic]) {
-      topicsMap[topic] = 0;
-    }
+    const firstCapitalize = (str: string) => str.at(0)?.toUpperCase() + str.slice(1);
+    const topic = firstCapitalize(`${post.metadata.topic || 'General'}`);
+    if (!topicsMap[topic]) topicsMap[topic] = 0;
     topicsMap[topic]++;
   });
-
+  
   return Object.entries(topicsMap).map(([name, count]) => ({
     name,
     count,

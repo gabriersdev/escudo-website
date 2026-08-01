@@ -10,6 +10,7 @@ import Link from 'next/link';
 import Image from "next/image";
 import {PageHeading} from '@/components/page-heading';
 import {appConfigs} from "@/resources/resources";
+import {dictionary} from "@/resources/dictionary";
 
 export const metadata: Metadata = {
   title: `Authors | ${appConfigs["app-name"]}`,
@@ -36,8 +37,8 @@ export default function Authors() {
         <div className="flex flex-col lg:flex-row">
           <div className="w-full lg:flex-1 lg:pr-16">
             <PageHeading
-              title="Our Authors"
-              description="Who writes here?"
+              title={dictionary.authors.title}
+              description={dictionary.authors.description}
             />
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">

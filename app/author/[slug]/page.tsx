@@ -9,6 +9,7 @@ import {getAuthorBySlug} from '@/resources/authors';
 import {notFound} from 'next/navigation';
 import {PageHeading} from '@/components/page-heading';
 import {appConfigs} from "@/resources/resources";
+import {dictionary} from "@/resources/dictionary";
 
 export async function generateMetadata({params}: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
@@ -51,8 +52,10 @@ export default async function AuthorPage({params}: { params: Promise<{ slug: str
           {/* Main Content Area */}
           <div className="w-full lg:flex-1 lg:pr-16">
             <PageHeading
-              title={`Posts by ${author.name}`}
-              description={`${posts.length} ${posts.length === 1 ? 'post' : 'posts'} published`}
+              title={dictionary.author.title.replace("{{name}}", author.name)}
+              description={posts.length === 1 
+                ? dictionary.author.descriptionSingle.replace("{{count}}", posts.length.toString()) 
+                : dictionary.author.descriptionPlural.replace("{{count}}", posts.length.toString())}
             />
             
             {posts.length > 0 ? (
@@ -62,7 +65,7 @@ export default async function AuthorPage({params}: { params: Promise<{ slug: str
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500">No posts found for this author.</p>
+              <p className="text-gray-500">{dictionary.author.noPosts}</p>
             )}
           </div>
           
