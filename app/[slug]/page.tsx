@@ -12,6 +12,7 @@ import {ShareButton} from '@/components/share-button';
 import {SocialShare} from '@/components/social-share';
 import {appConfigs, siteUrl} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
+import {mdxComponents} from "@/components/mdx-components";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -154,7 +155,7 @@ export default async function Post({params}: PageProps) {
           
           {/* Post Content rendered by next-mdx-remote */}
           <div className="markdown-content max-w-3xl mx-auto">
-            <MDXRemote source={post.content}/>
+            <MDXRemote source={post.content} components={mdxComponents}/>
           </div>
           
           {/* Internal Footer for post */}
@@ -166,7 +167,7 @@ export default async function Post({params}: PageProps) {
             </div>
             
             <div className="markdown-content opacity-75">
-              <MDXRemote source={guideContent}/>
+              <MDXRemote source={guideContent} components={mdxComponents}/>
             </div>
             
           </div>

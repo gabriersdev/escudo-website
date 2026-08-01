@@ -8,6 +8,12 @@ O projeto utiliza Next.js com App Router. Os conteúdos das matérias são escri
 3. A página de listagem `app/page.tsx` lê todos os posts, ordena-os por data e exibe resumos em componentes como `FeaturedPost` e `PostCard`.
 4. A página de leitura `app/[slug]/page.tsx` faz o matching dinâmico do *slug* na URL com o nome do arquivo, e usa o `next-mdx-remote` para compilar o conteúdo MDX para HTML.
 
+## Componentes Customizados no MDX
+- O projeto suporta a injeção de componentes React diretamente nos arquivos `.mdx` através da propriedade `components` do `next-mdx-remote` (injetado nas rotas dinâmicas e estáticas institucionais).
+- **Registro Centralizado**: O arquivo `components/mdx-components.tsx` atua como um dicionário unificado, exportando todos os componentes liberados para uso global no Markdown.
+- **Componentes Interativos**:
+  - `ImageGrid`: Componente *Client-side* (`"use client"`) desenvolvido para galerias de postagens. O componente recebe o parâmetro `urls` (string separada por vírgulas, contornando limitações conhecidas do compilador MDX com arrays nativos). Ele constrói um grid responsivo de imagens utilizando o componente nativo do Next.js (`next/image`), otimizado com *placeholders* em base64 (`blurDataURL`). Uma funcionalidade de *Lightbox* (visualização expandida da imagem via clique) é acionada aproveitando o controle de estado nativo da tag `<dialog>`, espelhando as mesmas otimizações semânticas documentadas para o `search-modal.tsx`.
+
 ## Estrutura de Componentes
 Seguindo o design limpo:
 - `header.tsx`: Navegação principal.

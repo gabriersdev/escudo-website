@@ -10,6 +10,7 @@ import {NewsletterSection} from '@/components/newsletter';
 import {Metadata} from 'next';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
+import {mdxComponents} from "@/components/mdx-components";
 
 export const metadata: Metadata = {
   title: `About | ${appConfigs["app-name"]}`,
@@ -33,7 +34,7 @@ export default async function About() {
             />
             
             <div className="markdown-content">
-              <MDXRemote source={content} />
+              <MDXRemote source={content} components={mdxComponents} />
             </div>
           </div>
           

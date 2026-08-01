@@ -11,6 +11,7 @@ import {dictionary} from "@/resources/dictionary";
 import {PageHeading} from '@/components/page-heading';
 import {Sidebar} from "@/components/sidebar";
 import {AppSidebar} from "@/components/app-sidebar";
+import {mdxComponents} from "@/components/mdx-components";
 
 export const metadata: Metadata = {
   title: `Data + Privacy | ${appConfigs["app-name"]}`,
@@ -35,7 +36,7 @@ export default async function Privacy() {
             />
             
             <div className="markdown-content">
-              <MDXRemote source={content} />
+              <MDXRemote source={content} components={mdxComponents} />
             </div>
           </div>
           
