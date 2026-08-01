@@ -18,7 +18,7 @@ export async function generateMetadata({params}: { params: Promise<{ slug: strin
     return {title: 'Author Not Found'};
   }
   return {
-    title: `${author.name} | ${appConfigs["app-name"]}`,
+    title: `${dictionary.author.title.replace("{{name}}", author.name)} | ${appConfigs["app-name"]}`,
     description: author.bio,
   };
 }

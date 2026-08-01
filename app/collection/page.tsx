@@ -11,8 +11,8 @@ import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
 
 export const metadata: Metadata = {
-  title: `Collection | ${appConfigs["app-name"]}`,
-  description: 'All posts from The Journal.',
+  title: `${dictionary.collection.title} | ${appConfigs["app-name"]}`,
+  description: dictionary.collection.description.replace("{{count}}", getPosts().length.toString()),
 };
 
 export default function CollectionPage() {

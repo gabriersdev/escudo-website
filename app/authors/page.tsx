@@ -13,8 +13,8 @@ import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
 
 export const metadata: Metadata = {
-  title: `Authors | ${appConfigs["app-name"]}`,
-  description: 'Meet the authors contributing thoughts, stories and ideas to The Journal.',
+  title: `${dictionary.authors.title} | ${appConfigs["app-name"]}`,
+  description: dictionary.authors.description,
 };
 
 export default function Authors() {
