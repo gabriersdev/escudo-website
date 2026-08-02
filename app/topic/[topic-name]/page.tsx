@@ -1,15 +1,12 @@
 import React from 'react';
 import {getPosts, getTopics} from '../../../libs/mdx';
-import {Header} from '../../../components/header';
-import {Footer} from '../../../components/footer';
+import Base from '../../../components/base';
 import {Sidebar} from '../../../components/sidebar';
 import {PostCard} from '../../../components/post-card';
-import {NewsletterSection} from '../../../components/newsletter';
 import {Metadata} from 'next';
 import {PageHeading} from '../../../components/page-heading';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
-import {InstagramBanner} from "@/components/instagram-banner";
 
 type Props = {
   params: Promise<{ 'topic-name': string }>;
@@ -22,8 +19,8 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   const formattedTopic = displayTopic.charAt(0).toUpperCase() + displayTopic.slice(1);
   
   return {
-    title: `${formattedTopic} | ${appConfigs["app-name"]}`,
-    description: `Posts related to ${formattedTopic}`,
+    title: `${dictionary.topic.title.replace("{{name}}", formattedTopic)} | ${appConfigs["app-name"]}`,
+    description: dictionary.topic.description.replace("{{name}}", formattedTopic),
   };
 }
 
@@ -54,41 +51,37 @@ export default async function TopicPage({params}: Props) {
   const formattedTopic = displayTopic.charAt(0).toUpperCase() + displayTopic.slice(1);
   
   return (
-    <div className="bg-white min-h-screen text-gray-900 font-sans">
-      <Header/>
-      
-      <main className="container mx-auto px-4 max-w-6xl pt-16">
-        <div className="flex flex-col lg:flex-row">
-          
-          {/* Main Content Area */}
-          <div className="w-full lg:flex-1 lg:pr-16">
-            <PageHeading
-              title={`Topic: ${formattedTopic}`}
-              description={`${posts.length || "No"} ${posts.length === 1 ? 'post' : 'posts'} found`}
-            />
-            
-            {posts.length > 0 ? (
-              <div className="flex flex-col mt-8">
-                {posts.map((post) => (
-                  <PostCard key={post.slug} slug={post.slug} metadata={post.metadata}/>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-20 bg-gray-50 rounded border border-gray-100">
-                <p className="text-gray-500 text-lg">{dictionary.topic.noPosts}</p>
-              </div>
-            )}
-          </div>
-          
-          {/* Right Sidebar */}
-          <Sidebar features={features} topics={topics}/>
+    <Base>
+      <div className="flex flex-col lg:flex-row">
         
+        {/* Main Content Area */}
+        <div className="w-full lg:flex-1 lg:pr-16">
+          <PageHeading
+            title={dictionary.topic.title.replace("{{name}}", formattedTopic)}
+            description={posts.length === 0 
+              ? dictionary.topic.noPostsFound
+              : posts.length === 1 
+                ? dictionary.topic.postsFoundSingle.replace("{{count}}", "1")
+                : dictionary.topic.postsFoundPlural.replace("{{count}}", posts.length.toString())}
+          />
+          
+          {posts.length > 0 ? (
+            <div className="flex flex-col mt-8">
+              {posts.map((post) => (
+                <PostCard key={post.slug} slug={post.slug} metadata={post.metadata}/>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 bg-gray-50 rounded border border-gray-100">
+              <p className="text-gray-500 text-lg">{dictionary.topic.noPosts}</p>
+            </div>
+          )}
         </div>
-      </main>
+        
+        {/* Right Sidebar */}
+        <Sidebar features={features} topics={topics}/>
       
-      <InstagramBanner/>
-      <NewsletterSection/>
-      <Footer/>
-    </div>
+      </div>
+    </Base>
   );
 }

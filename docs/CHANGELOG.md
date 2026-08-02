@@ -1,5 +1,19 @@
 # Changelog
 
+## [Atualização Recente] - Refatoração de Layout e Otimizações de Componentes
+
+### Adicionado
+- **Componente Base (Layout)**: Criação do componente estrito `components/base.tsx` com propriedades de comportamento visual (`hideNewsletter`, `hideInstagram`) para padronizar e encapsular a estrutura base das páginas.
+- **Geração Dinâmica de Mídia (ImageGrid)**: Adicionadas propriedades `baseUrl`, `fileName` (com o placeholder `[]`) e `range` no componente `ImageGrid` para processamento e geração de URLs dinâmicas para postagens ricas em mídia, reduzindo blocos massivos de texto em MDX.
+- **Feedback Visual Avançado (ImageGrid)**: Inclusão de um bloco de alerta visual (UI *fallback*) acionado caso a declaração de metadados do grid de imagens contenha divergências ou desrespeite validações do sistema.
+- **Acessibilidade Dinâmica de Imagens**: Introdução da propriedade opcional `altContext` no `ImageGrid` para fornecer suporte unificado e dinâmico às tags `alt` geradas para leitores de tela.
+
+### Modificado
+- **Refatoração Estrutural das Páginas**: Atualização em lote de todas as rotas primárias e dinâmicas (`app/page.tsx`, `app/[slug]/page.tsx`, `app/author/`, `app/topic/`, etc) para adoção irrestrita do componente `<Base>`, eliminando imports dispersos e redundância sintática.
+- **Centralização SEO e Metadados**: Extração final e localização de textos estáticos e lógicas de SEO (`title`, `description` e formatadores plurais de pesquisas) das páginas e de tópicos (`topic/[topic-name]`) para armazenamento direto e padronizado em `resources/dictionary.ts`.
+- **Diretrizes de Projeto**: Documentação e formalização da convenção estrita de metadados no arquivo de regras do projeto (`docs/CODING-GUIDELINES.md`).
+
+
 ## [Atualização Recente] - Componentes Interativos no MDX (ImageGrid)
 
 ### Adicionado

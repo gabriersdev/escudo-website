@@ -3,30 +3,79 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Image from "next/image";
 
-// TODO - adicionar suporete para informar base-path ou base-url, file-name de formacao e range de arquivos, para evitar ter URLs imensas. Entenda:
-// Ex: base-path=https://raw.githubusercontent.com/gabriersdev/escudo-archive/refs/heads/main/publications/i.senhas-e-gerenciadores/
-// Ex: file-name=apresentacao-[].png
-// Ex: range=[1,8]
-// Res. ex: Retorna imagens formadas a partir do base-path + file-name[range[posicao++]].png (para as posições de 1 até 8, se 2 parâmetros OU [1, 5, 7, 16] - se mais de dois parâmetros.
 // TODO - utilizar validação e apresentar feedback visual mesmo para formatos que fugirem deste padrão ou regras acima descrição e exemplificadas
 export interface ImageGridProps {
-  images: string[];
+  images?: string[] | string;
+  urls?: string;
+  baseUrl?: string;
+  fileName?: string;
+  range?: number[] | string;
+  altContext?: string;
 }
 
-export function ImageGrid(props: any) {
-  let images = props.images;
+export function ImageGrid(props: ImageGridProps) {
+  let images: string[] = [];
+  let errorMsg: string | null = null;
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   
-  // Se o mdx não conseguir parsear o array e o usuário passar uma string 'urls' separada por vírgula
-  if (typeof props.urls === 'string') {
-    images = props.urls.split(',').map((u: string) => u.trim());
-  } else if (typeof images === 'string') {
-    // Tenta fazer o parse caso o array tenha sido serializado como string
-    try {
-      images = JSON.parse(images);
-    } catch {
-      images = images.split(',').map((u: string) => u.trim());
+  if (props.baseUrl || props.fileName || props.range) {
+    if (!props.baseUrl || !props.fileName || !props.range) {
+      errorMsg = "Quando usar o formato base-path, informe baseUrl, fileName e range.";
+    } else if (!props.fileName.includes('[]')) {
+      errorMsg = "O fileName deve conter '[]' como placeholder para a numeração (Ex: apresentacao-[].png).";
+    } else {
+      let parsedRange: number[] = [];
+      if (typeof props.range === 'string') {
+        try {
+          parsedRange = JSON.parse(props.range);
+        } catch {
+          parsedRange = props.range.split(',').map(n => parseInt(n.trim(), 10)).filter(n => !isNaN(n));
+        }
+      } else if (Array.isArray(props.range)) {
+        parsedRange = props.range;
+      }
+      
+      if (!Array.isArray(parsedRange) || parsedRange.length === 0) {
+        errorMsg = "O range fornecido é inválido. Use [inicio, fim] ou [num1, num2, num3].";
+      } else {
+        let numbersToUse: number[] = [];
+        if (parsedRange.length === 2) {
+          const start = parsedRange[0];
+          const end = parsedRange[1];
+          if (start > end) {
+            errorMsg = "No range [inicio, fim], o início deve ser menor ou igual ao fim.";
+          } else {
+            for (let i = start; i <= end; i++) {
+              numbersToUse.push(i);
+            }
+          }
+        } else {
+          numbersToUse = parsedRange;
+        }
+        
+        if (!errorMsg) {
+          images = numbersToUse.map(num => {
+            const name = props.fileName!.replace('[]', num.toString());
+            const baseUrl = props.baseUrl!.endsWith('/') ? props.baseUrl : `${props.baseUrl}/`;
+            return `${baseUrl}${name}`;
+          });
+        }
+      }
+    }
+  } else {
+    let rawImages = props.images;
+    if (typeof props.urls === 'string') {
+      rawImages = props.urls.split(',').map((u: string) => u.trim());
+    } else if (typeof rawImages === 'string') {
+      try {
+        rawImages = JSON.parse(rawImages);
+      } catch {
+        rawImages = (rawImages as string).split(',').map((u: string) => u.trim());
+      }
+    }
+    if (Array.isArray(rawImages)) {
+      images = rawImages;
     }
   }
   
@@ -55,10 +104,19 @@ export function ImageGrid(props: any) {
     return () => dialog.removeEventListener('close', handleClose);
   }, []);
   
+  if (errorMsg) {
+    return (
+      <div className="p-4 border-2 border-red-500 rounded my-8 text-black bg-white">
+        <p className="font-bold text-red-500">Erro: {errorMsg}</p>
+        <pre className="text-sm mt-2 overflow-auto">Props: {JSON.stringify(props, null, 2)}</pre>
+      </div>
+    );
+  }
+
   if (!images || !Array.isArray(images) || images.length === 0) {
     return (
       <div className="p-4 border-2 border-red-500 rounded my-8 text-black bg-white">
-        <p className="font-bold text-red-500">Erro: ImageGrid carregou, mas não recebeu um array válido de imagens.</p>
+        <p className="font-bold text-red-500">Erro: ImageGrid carregou, mas não recebeu imagens válidas.</p>
         <pre className="text-sm mt-2 overflow-auto">Props: {JSON.stringify(props, null, 2)}</pre>
       </div>
     );
@@ -74,12 +132,11 @@ export function ImageGrid(props: any) {
             onClick={() => setSelectedImage(src)}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            {/*TODO - o texto alt deve descrever melhor do que se trata a imagem - ao menos ter o contexto do post em que ela é importada*/}
             <Image
               width={1000}
               height={1000}
               src={src}
-              alt={`Imagem do grid #${idx + 1}`}
+              alt={props.altContext ? `${props.altContext} - Imagem ${idx + 1}` : `Imagem do grid #${idx + 1}`}
               className="w-full h-full object-cover !m-0 transition-transform duration-300 group-hover:scale-105  bg-white"
               loading="lazy"
               placeholder="blur"

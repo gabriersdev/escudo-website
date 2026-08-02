@@ -53,3 +53,8 @@ Este documento fornece diretrizes de codificação para o projeto.
 - Evitar, sempre que possível, múltipas renderizações, seja `refresh` de página ou uso de intervalos para execução de blocos de códigos.
 - Evitar, sempre que possível, desenvolver `loops` pesados, que, para funcionar precisam da execução de outros loops ou de requisições externas (seja à `APIs` ou banco de dados).
 - Utilize sempre que possível os nomes dos componentes e variáveis em inglês US.
+
+## Metadados e SEO
+
+- **Centralização no Dicionário:** Todas as definições estáticas de metadados das páginas (como `title` e `description` exportados em constantes `metadata`) devem ser centralizadas e definidas no arquivo de dicionário (`resources/dictionary.ts`). Isso facilita a tradução e a manutenção de padrões em todas as páginas.
+- Em vez de usar strings literais nos componentes, importe o `dictionary` e faça referência à chave correspondente da página (ex: `dictionary.subscribe.title`).

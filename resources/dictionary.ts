@@ -71,11 +71,19 @@ export const dictionary = {
   },
   about: {
     title: "Sobre nós",
+    description: "Saiba mais sobre nós, nossa missão e as histórias que compartilhamos.",
   },
   topic: {
+    title: "Tópico: {{name}}",
+    description: "Publicações relacionadas a {{name}}",
+    postsFoundSingle: "{{count}} publicação encontrada",
+    postsFoundPlural: "{{count}} publicações encontradas",
+    noPostsFound: "Nenhuma publicação encontrada",
     noPosts: "Nenhuma publicação encontrada para este tópico.",
   },
   privacy: {
+    title: "Dados e Privacidade",
+    description: "Termos de serviço e política de privacidade.",
     termsOfService: "Termos de Serviço",
     privacyPolicy: "Política de Privacidade",
   },
@@ -92,5 +100,9 @@ export const dictionary = {
     handle: "escudo.ifmg",
     description: "Acompanhe e fique por dentro das nossas atividades em nossa rede social.",
     link: "https://instagram.com/escudo.ifmg",
+  },
+  subscribe: {
+    title: "Inscreva-se",
+    description: "Inscreva-se em nossa newsletter.",
   }
 };
