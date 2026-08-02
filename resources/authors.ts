@@ -34,7 +34,7 @@ export const authors: {
     bio: "Aluno de Informática Integrado ao Ensino Médio",
     avatar: "/logo-bloco.png",
   },
-];
+].sort((a, b) => a.name.localeCompare(b.name));
 
 export function getAuthorBySlug(slug: string) {
   return authors.find(author => author.slug === slug);

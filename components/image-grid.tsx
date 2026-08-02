@@ -3,6 +3,12 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Image from "next/image";
 
+// TODO - adicionar suporete para informar base-path ou base-url, file-name de formacao e range de arquivos, para evitar ter URLs imensas. Entenda:
+// Ex: base-path=https://raw.githubusercontent.com/gabriersdev/escudo-archive/refs/heads/main/publications/i.senhas-e-gerenciadores/
+// Ex: file-name=apresentacao-[].png
+// Ex: range=[1,8]
+// Res. ex: Retorna imagens formadas a partir do base-path + file-name[range[posicao++]].png (para as posições de 1 até 8, se 2 parâmetros OU [1, 5, 7, 16] - se mais de dois parâmetros.
+// TODO - utilizar validação e apresentar feedback visual mesmo para formatos que fugirem deste padrão ou regras acima descrição e exemplificadas
 export interface ImageGridProps {
   images: string[];
 }
@@ -68,11 +74,12 @@ export function ImageGrid(props: any) {
             onClick={() => setSelectedImage(src)}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
+            {/*TODO - o texto alt deve descrever melhor do que se trata a imagem - ao menos ter o contexto do post em que ela é importada*/}
             <Image
               width={1000}
               height={1000}
               src={src}
-              alt={`Grid image ${idx + 1}`}
+              alt={`Imagem do grid #${idx + 1}`}
               className="w-full h-full object-cover !m-0 transition-transform duration-300 group-hover:scale-105  bg-white"
               loading="lazy"
               placeholder="blur"
