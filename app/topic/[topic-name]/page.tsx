@@ -9,6 +9,7 @@ import {Metadata} from 'next';
 import {PageHeading} from '../../../components/page-heading';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
+import {InstagramBanner} from "@/components/instagram-banner";
 
 type Props = {
   params: Promise<{ 'topic-name': string }>;
@@ -85,6 +86,7 @@ export default async function TopicPage({params}: Props) {
         </div>
       </main>
       
+      <InstagramBanner/>
       <NewsletterSection/>
       <Footer/>
     </div>

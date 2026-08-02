@@ -11,6 +11,7 @@ import Image from "next/image";
 import {PageHeading} from '@/components/page-heading';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
+import {InstagramBanner} from "@/components/instagram-banner";
 
 export const metadata: Metadata = {
   title: `${dictionary.authors.title} | ${appConfigs["app-name"]}`,
@@ -68,6 +69,7 @@ export default function Authors() {
         </div>
       </main>
       
+      <InstagramBanner/>
       <NewsletterSection/>
       <Footer/>
     </div>

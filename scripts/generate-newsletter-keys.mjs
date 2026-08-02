@@ -1,7 +1,11 @@
 import crypto from 'crypto';
 
 const algorithm = 'aes-256-cbc';
-const validPhrase = 'escudo_newsletter_valid_transaction';
+const validPhrase = '';
+
+if (validPhrase.trim().length < 1) {
+  throw new Error('Invalid phrase');
+}
 
 // Generate a random 32-byte secret key
 const secretKey = crypto.randomBytes(32);
@@ -19,9 +23,12 @@ encrypted += cipher.final('hex');
 // Format: iv:encrypted_payload
 const publicToken = `${iv.toString('hex')}:${encrypted}`;
 
-console.log('\n--- Newsletter Security Keys Generation ---\n');
+console.log()
+console.log('Newsletter Security Keys Generation');
+console.log()
 console.log('Backend Secret Key (add to your .env):');
-console.log(`HASH_VALIDATION_TRANSACTION=${hexSecretKey}`);
-console.log('\nFrontend Public Token (add to your .env):');
-console.log(`NEXT_PUBLIC_HASH_VALIDATION_TRANSACTION=${publicToken}`);
-console.log('\n-------------------------------------------\n');
+console.log(`${hexSecretKey}`);
+console.log()
+console.log('Frontend Public Token (add to your .env):');
+console.log(`${publicToken}`);
+console.log();

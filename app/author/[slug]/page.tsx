@@ -10,6 +10,7 @@ import {notFound} from 'next/navigation';
 import {PageHeading} from '@/components/page-heading';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
+import {InstagramBanner} from "@/components/instagram-banner";
 
 export async function generateMetadata({params}: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
@@ -53,8 +54,8 @@ export default async function AuthorPage({params}: { params: Promise<{ slug: str
           <div className="w-full lg:flex-1 lg:pr-16">
             <PageHeading
               title={dictionary.author.title.replace("{{name}}", author.name)}
-              description={posts.length === 1 
-                ? dictionary.author.descriptionSingle.replace("{{count}}", posts.length.toString()) 
+              description={posts.length === 1
+                ? dictionary.author.descriptionSingle.replace("{{count}}", posts.length.toString())
                 : dictionary.author.descriptionPlural.replace("{{count}}", posts.length.toString())}
             />
             
@@ -71,10 +72,10 @@ export default async function AuthorPage({params}: { params: Promise<{ slug: str
           
           {/* Right Sidebar */}
           <Sidebar features={features} topics={topics} author={author}/>
-        
         </div>
       </main>
       
+      <InstagramBanner/>
       <NewsletterSection/>
       <Footer/>
     </div>

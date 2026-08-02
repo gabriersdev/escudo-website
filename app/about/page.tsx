@@ -11,6 +11,7 @@ import {Metadata} from 'next';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
 import {mdxComponents} from "@/components/mdx-components";
+import {InstagramBanner} from "@/components/instagram-banner";
 
 export const metadata: Metadata = {
   title: `About | ${appConfigs["app-name"]}`,
@@ -42,6 +43,7 @@ export default async function About() {
         </div>
       </main>
       
+      <InstagramBanner/>
       <NewsletterSection/>
       <Footer/>
     </div>

@@ -12,6 +12,7 @@ import {PageHeading} from '@/components/page-heading';
 import {Sidebar} from "@/components/sidebar";
 import {AppSidebar} from "@/components/app-sidebar";
 import {mdxComponents} from "@/components/mdx-components";
+import {InstagramBanner} from "@/components/instagram-banner";
 
 export const metadata: Metadata = {
   title: `Data + Privacy | ${appConfigs["app-name"]}`,
@@ -44,6 +45,7 @@ export default async function Privacy() {
         </div>
       </main>
       
+      <InstagramBanner/>
       <NewsletterSection/>
       <Footer/>
     </div>

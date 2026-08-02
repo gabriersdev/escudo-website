@@ -9,6 +9,7 @@ import {NewsletterSection} from '@/components/newsletter';
 import {Metadata} from 'next';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
+import {InstagramBanner} from "@/components/instagram-banner";
 
 export const metadata: Metadata = {
   title: appConfigs.title,
@@ -53,10 +54,10 @@ export default function Home() {
           
           {/* Right Sidebar */}
           <AppSidebar excludeSlug={featuredPost?.slug} />
-        
         </div>
       </main>
       
+      <InstagramBanner/>
       <NewsletterSection/>
       <Footer/>
     </div>
