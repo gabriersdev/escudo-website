@@ -1,5 +1,16 @@
 # Changelog
 
+## [Atualização Recente] - Componentes Interativos no MDX (ImageGrid)
+
+### Adicionado
+- **Renderização Dinâmica no MDX**: Criação do dicionário `components/mdx-components.tsx` para injetar componentes React customizados nativamente dentro dos arquivos de postagem.
+- **Componente ImageGrid**: Implementação de um layout dinâmico em grade para os posts. Suporta recebimento resiliente de parâmetros em string (`urls="img1,img2"`) para contornar limitações e bugs silenciosos do compilador interno de MDX.
+- **Efeito Lightbox (Expansão de Mídia)**: Integração de visualização expandida de imagens (modo "tela cheia") através da tag nativa `<dialog>`, reaproveitando as garantias de acessibilidade e isolamento (com foco e travamento de tela) da aplicação central.
+- **Placeholder Nativo de Carregamento**: Implementação de renderização imediata com uma minúscula imagem Base64 cinza (via propriedade `blurDataURL` do `next/image`), resolvendo os pulos e flashes visuais comuns durante o *lazy loading*.
+
+### Modificado
+- **Páginas Híbridas e Institucionais**: Atualização das rotas base `app/[slug]/page.tsx`, `app/about/page.tsx` e `app/privacy/page.tsx` para passar o dicionário de componentes globais (`mdxComponents`) diretamente à camada do `<MDXRemote>`.
+
 ## [Atualização Recente] - Segurança e Validação de Newsletter
 
 ### Adicionado
