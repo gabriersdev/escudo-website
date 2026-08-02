@@ -86,5 +86,11 @@ export const dictionary = {
     readArticle: "Leia o artigo que encontrei:",
     shareOn: "Compartilhar no",
     shareLink: "Compartilhar link",
+  },
+  instagram: {
+    followUs: "Sigam-nos no Instagram",
+    handle: "escudo.ifmg",
+    description: "Acompanhe e fique por dentro das nossas atividades em nossa rede social.",
+    link: "https://instagram.com/escudo.ifmg",
   }
 };
