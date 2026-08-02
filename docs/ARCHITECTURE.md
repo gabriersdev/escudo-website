@@ -56,3 +56,11 @@ Utilizamos TailwindCSS. A formatação visual dos conteúdos MDX não utiliza pl
 - `app/sitemap.ts`: Rota especial do ecossistema Next.js (`MetadataRoute.Sitemap`) que intercepta requisições para `sitemap.xml`.
 - **Funcionamento**: A função de renderização coleta programaticamente todas as postagens publicadas através do método `getPosts()` e combina suas URLs (junto a rotas estáticas como a homepage e `/blog`) retornando um objeto iterável estruturado. O Next.js então formata esse retorno nativamente para o padrão XML de SEO utilizado pelos indexadores globais.
 - **Tratamento de Datas**: Assim como na geração de RSS, a extração do `lastModified` especifica explicitamente o formato `DD MMM YYYY` ao transformar a string do arquivo MDX, prevenindo o comportamento padrão instável do construtor de `Date` que gera avisos de *deprecation*.
+
+## Segurança (Newsletter)
+- **Componente Front-end e Armadilha (Honeypot)**: O formulário de inscrição em `components/newsletter.tsx` implementa um campo *honeypot* visualmente oculto (`opacity-0 absolute`). Robôs automatizados preenchem formulários ignorando o CSS, ativando a armadilha. Se o campo for preenchido, a requisição envia um hash inválido, prevenindo spam silenciosamente no front-end.
+- **Validação de Transação Criptografada (AES-256-CBC)**: 
+  - A comunicação com o back-end (`app/api/newsletter/route.ts`) exige um token criptografado para garantir que a requisição partiu do site oficial.
+  - O front-end carrega publicamente o token criptografado (`NEXT_PUBLIC_HASH_VALIDATION_TRANSACTION`).
+  - O back-end detém a chave privada (`HASH_VALIDATION_TRANSACTION`). Ele recebe o token e utiliza a biblioteca nativa `crypto` do Node.js para descriptografar. Se o conteúdo descriptografado for autêntico (ex: `escudo_newsletter_valid_transaction`), a requisição é processada. Retorna HTTP `403 Forbidden` caso contrário.
+- **Script Gerador**: Um utilitário de terminal em `scripts/generate-newsletter-keys.mjs` automatiza a geração segura das chaves criptográficas para o ambiente de produção.

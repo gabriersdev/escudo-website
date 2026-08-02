@@ -1,5 +1,16 @@
 # Changelog
 
+## [Atualização Recente] - Segurança e Validação de Newsletter
+
+### Adicionado
+- **Arquitetura de Honeypot**: Inclusão de um input invisível no componente `NewsletterForm` (`components/newsletter.tsx`) para capturar submissões feitas por robôs de spam automatizados.
+- **Token Criptografado (AES-256-CBC)**: Implementação de assinatura e verificação criptográfica estrita entre o cliente e o servidor. A submissão da newsletter exige uma transação assinada e validada antes de ser encaminhada, impedindo abusos via engenharia reversa.
+- **Rota de API do Back-end**: Criação de `app/api/newsletter/route.ts` atuando como a camada de validação e *proxy* que desencripta a transação e encaminha o e-mail validado para o endpoint real (`NEWSLETTER_ENDPOINT`).
+- **Utilitário de Chaves**: Criação de um script Node.js (`scripts/generate-newsletter-keys.mjs`) que gera automaticamente as chaves fortes (`NEXT_PUBLIC_HASH_VALIDATION_TRANSACTION` e `HASH_VALIDATION_TRANSACTION`) para implantação no ambiente de produção (`.env`).
+
+### Modificado
+- **Componente Newsletter**: Refatoração estrutural de `components/newsletter.tsx` para abandonar o comportamento passivo de alerta, controlando gerencialmente os estados de UI (`idle`, `loading`, `success`, `error`) e o novo payload criptografado baseado na inatividade da armadilha *honeypot*.
+- **Dicionário (i18n)**: Atualização do `resources/dictionary.ts` para suportar nativamente as mensagens das novas validações e estados.
 ## [Atualização Recente] - Internacionalização (i18n) e Centralização de Textos
 
 ### Adicionado

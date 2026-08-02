@@ -35,6 +35,11 @@ export const dictionary = {
     subscribeButton: "Inscreva-se",
     placeholder: "seuemail@email.com",
     subscribedAlert: "Inscrito com",
+    loading: "Inscrevendo...",
+    successMessage: "Inscrição realizada com sucesso!",
+    errorMessage: "Ocorreu um erro ao inscrever. Tente novamente.",
+    emailRequired: "Por favor, informe seu e-mail.",
+    emailInvalid: "Por favor, informe um e-mail válido.",
   },
   search: {
     placeholder: "Pesquisar publicações, tags e autores",

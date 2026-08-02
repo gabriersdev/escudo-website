@@ -59,7 +59,7 @@ export function ImageGrid(props: any) {
     return (
       <div className="p-4 border-2 border-red-500 rounded my-8 text-black bg-white">
         <p className="font-bold text-red-500">Erro: ImageGrid carregou, mas não recebeu um array válido de imagens.</p>
-        <pre className="text-xs mt-2 overflow-auto">Props: {JSON.stringify(props, null, 2)}</pre>
+        <pre className="text-sm mt-2 overflow-auto">Props: {JSON.stringify(props, null, 2)}</pre>
       </div>
     );
   }
