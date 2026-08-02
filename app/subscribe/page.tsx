@@ -5,6 +5,7 @@ import {NewsletterSection} from '@/components/newsletter';
 import {Metadata} from 'next';
 import {appConfigs} from "@/resources/resources";
 
+// TODO - traduzir este metadata e adicionar informacoes ao dictonary.ts e também para todas as outras paginas que possuam metadatas e estao sendo definidos estaticamente no componente. Centralizar e documentar as mudanças feitas.
 export const metadata: Metadata = {
   title: `Subscribe | ${appConfigs["app-name"]}`,
   description: 'Subscribe to our newsletter.',
