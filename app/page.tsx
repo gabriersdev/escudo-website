@@ -19,7 +19,7 @@ export default function Home() {
   
   const featuredPost = posts.find(p => p.metadata.featured) || posts[0];
   const otherPosts = posts.filter(p => p.slug !== featuredPost?.slug);
-
+  
   return (
     <Base>
       <div className="flex flex-col lg:flex-row">
@@ -39,15 +39,15 @@ export default function Home() {
                 {otherPosts
                   .toSpliced(15)
                   .map((post) => (
-                  <PostCard key={post.slug} slug={post.slug} metadata={post.metadata}/>
-                ))}
+                    <PostCard key={post.slug} slug={post.slug} metadata={post.metadata}/>
+                  ))}
               </div>
             </div>
           )}
         </div>
         
         {/* Right Sidebar */}
-        <AppSidebar excludeSlug={featuredPost?.slug} />
+        <AppSidebar excludeSlug={featuredPost?.slug}/>
       </div>
     </Base>
   );

@@ -1,4 +1,5 @@
 "use client";
+
 import Link from 'next/link';
 import {NewsletterForm} from './newsletter';
 import {appConfigs} from "@/resources/resources";

@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         postDate = parsedDate.format(appConfigs["datetime-format"]);
       } else {
         const fallbackDate = moment(post.metadata.date);
-        if(fallbackDate.isValid()){
+        if (fallbackDate.isValid()) {
           postDate = fallbackDate.format(appConfigs["datetime-format"]);
         }
       }

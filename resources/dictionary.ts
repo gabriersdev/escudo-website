@@ -10,7 +10,7 @@ export const dictionary = {
     dataAndPrivacy: "Dados e privacidade",
     aboutUs: "Sobre nós",
     rss: "RSS",
-    poweredBy: "Desenvolvido por Ghost - Next.js",
+    poweredBy: "Baseado em Ghost. Desenvolvido em Next.js.",
   },
   home: {
     moreIssues: "Outras postagens",
@@ -54,7 +54,7 @@ export const dictionary = {
     share: "Compartilhar",
     previous: "Anterior",
     next: "PRÓXIMA",
-    readingTime: "{{time}} min de leitura",
+    readingTime: "{{time}} min para ler",
   },
   collection: {
     title: "Coleção",

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default async function About() {
   const contentPath = path.join(process.cwd(), 'resources', 'about.mdx');
   const content = fs.readFileSync(contentPath, 'utf8');
-
+  
   return (
     <Base>
       <div className="flex flex-col lg:flex-row">
@@ -29,11 +29,11 @@ export default async function About() {
           />
           
           <div className="markdown-content">
-            <MDXRemote source={content} components={mdxComponents} />
+            <MDXRemote source={content} components={mdxComponents}/>
           </div>
         </div>
         
-        <AppSidebar hideAbout={true} />
+        <AppSidebar hideAbout={true}/>
       </div>
     </Base>
   );

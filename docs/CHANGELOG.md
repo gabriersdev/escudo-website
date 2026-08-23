@@ -1,5 +1,11 @@
 # Changelog
 
+## [Atualização Recente] - Resolução de Erro no Script de Sincronização de Versão
+
+### Modificado
+- **Prevenção de Merge Interativo no NPM Script**: Adição da flag `--no-edit` ao comando `git pull` dentro do script `"sync:version"` no `package.json`. Isso evita que a sincronização falhe abruptamente por conta da tentativa falha do git de abrir editores de texto no terminal em caso de merge.
+- **Busca Segura de Tags**: Alteração do método de busca de tags no script `scripts/sync-version.js`, que substituíu `git pull` por `git fetch --tags`, otimizando a sincronização da versão do projeto sem correr o risco de invocar prompts e travar a thread, resolvendo de vez o *TODO* atrelado ao travamento de execuções no script.
+
 ## [Atualização Recente] - Correção de Parseamento de Datas com Moment.js
 
 ### Modificado

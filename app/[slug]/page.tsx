@@ -168,7 +168,7 @@ export default async function Post({params}: PageProps) {
         
         </div>
         
-        <div className="flex flex-wrap justify-between items-center mt-10 pt-8 border-t border-gray-300">
+        <div className="flex flex-wrap gap-4 justify-between items-center mt-10 pt-8 border-t border-gray-300">
           {prevPost ? (
             <Link href={`/${prevPost.slug}`} className="flex flex-col gap-2 flex-1">
               <h3 className="text-xl font-bold uppercase font-inter flex items-center gap-1">

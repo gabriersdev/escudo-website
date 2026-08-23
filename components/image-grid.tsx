@@ -3,7 +3,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Image from "next/image";
 
-// TODO - utilizar validação e apresentar feedback visual mesmo para formatos que fugirem deste padrão ou regras acima descrição e exemplificadas
 export interface ImageGridProps {
   images?: string[] | string;
   urls?: string;
@@ -112,7 +111,7 @@ export function ImageGrid(props: ImageGridProps) {
       </div>
     );
   }
-
+  
   if (!images || !Array.isArray(images) || images.length === 0) {
     return (
       <div className="p-4 border-2 border-red-500 rounded my-8 text-black bg-white">

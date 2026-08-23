@@ -5,7 +5,7 @@ const contacts = {
   "repo": "https://github.com/gabriersdev/escudo-website",
 }
 
-import { dictionary } from "./dictionary";
+import {dictionary} from "./dictionary";
 
 const headerNavigation = [
   [dictionary.header.home, '/'],

@@ -1,10 +1,10 @@
 import React from 'react';
-import {getPosts, getTopics} from '../../../libs/mdx';
+import {getPosts, getTopics} from '@/libs/mdx';
 import Base from '../../../components/base';
-import {Sidebar} from '../../../components/sidebar';
-import {PostCard} from '../../../components/post-card';
+import {Sidebar} from '@/components/sidebar';
+import {PostCard} from '@/components/post-card';
 import {Metadata} from 'next';
-import {PageHeading} from '../../../components/page-heading';
+import {PageHeading} from '@/components/page-heading';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
 
@@ -58,9 +58,9 @@ export default async function TopicPage({params}: Props) {
         <div className="w-full lg:flex-1 lg:pr-16">
           <PageHeading
             title={dictionary.topic.title.replace("{{name}}", formattedTopic)}
-            description={posts.length === 0 
+            description={posts.length === 0
               ? dictionary.topic.noPostsFound
-              : posts.length === 1 
+              : posts.length === 1
                 ? dictionary.topic.postsFoundSingle.replace("{{count}}", "1")
                 : dictionary.topic.postsFoundPlural.replace("{{count}}", posts.length.toString())}
           />

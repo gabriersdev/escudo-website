@@ -7,7 +7,6 @@ import {Metadata} from 'next';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
 import {PageHeading} from '@/components/page-heading';
-import {Sidebar} from "@/components/sidebar";
 import {AppSidebar} from "@/components/app-sidebar";
 import {mdxComponents} from "@/components/mdx-components";
 
@@ -19,7 +18,6 @@ export const metadata: Metadata = {
 export default async function Privacy() {
   const contentPath = path.join(process.cwd(), 'resources', 'privacy.mdx');
   const content = fs.readFileSync(contentPath, 'utf8');
-  
   
   return (
     <Base>

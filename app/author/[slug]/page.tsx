@@ -12,9 +12,7 @@ import {dictionary} from "@/resources/dictionary";
 export async function generateMetadata({params}: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const author = getAuthorBySlug(resolvedParams.slug);
-  if (!author) {
-    return {title: 'Author Not Found'};
-  }
+  if (!author) return {title: 'Author Not Found'};
   return {
     title: `${dictionary.author.title.replace("{{name}}", author.name)} | ${appConfigs["app-name"]}`,
     description: author.bio,
