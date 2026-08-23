@@ -49,7 +49,8 @@ export function SearchModal({posts}: SearchModalProps) {
   
   const filteredPosts = posts.filter((post) => {
     if (!query) return false;
-    const lowerQuery = query.toLowerCase();
+    else if (query.trim().length === 0) return false;
+    const lowerQuery = query.trim().toLowerCase();
     return (
       post.metadata.title.toLowerCase().includes(lowerQuery) ||
       post.metadata.description.toLowerCase().includes(lowerQuery) ||

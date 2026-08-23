@@ -153,7 +153,7 @@ export function NewsletterForm({variant = 'large'}: NewsletterFormProps) {
 
 export function NewsletterSection() {
   return (
-    <section className="bg-blue-600 text-white py-24 text-center w-full">
+    <section className="bg-blue-600 text-white py-24 text-center w-full rounded-xl">
       <div className="container mx-auto px-4 max-w-2xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           {dictionary.newsletter.subscribeTitle}

@@ -54,6 +54,7 @@ export const dictionary = {
     share: "Compartilhar",
     previous: "Anterior",
     next: "PRÓXIMA",
+    readingTime: "{{time}} min de leitura",
   },
   collection: {
     title: "Coleção",

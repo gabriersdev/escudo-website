@@ -1,5 +1,38 @@
 # Changelog
 
+## [Atualização Recente] - Manipulação Segura de Datas e Cálculo Autônomo de Leitura (MDX)
+
+### Adicionado
+- **Cálculo Autônomo de Tempo de Leitura**: O parser primário de postagens (`libs/mdx.ts`) foi expandido para calcular inteligentemente e em tempo real a estimativa de tempo de leitura baseada no peso textual da matéria (`words / 200`). Este cálculo consome a nova máscara injetada `dictionary.post.readingTime`, substituindo valores *hardcoded* legados e viabilizando a adaptação via i18n sem conflitos arquiteturais.
+
+### Modificado
+- **Manipulação Segura de Datas (MDX)**: A lógica de filtro, ordenação e conversão de datas nativas das publicações passou a utilizar exclusivamente a API do `Moment.js`, importando dinamicamente a constante `appConfigs.locale` (`pt-BR`). Isso resolve flutuações, datas mal formatadas e deságios de fuso horário, substituindo o antigo e errático construtor `new Date()`.
+- **Diretrizes Atualizadas**: Em resposta à arquitetura imposta pelas correções acima, foram adicionados dois novos parágrafos em `docs/CODING-GUIDELINES.md` documentando explicitamente os requerimentos rigorosos para `Manipulação de Datas` e `Estimativa de Tempo de Leitura`.
+
+## [Atualização Recente] - Centralização de Textos na Página de Privacidade
+
+### Modificado
+- **Textos Institucionais Dinâmicos**: A página de Privacidade (`app/privacy/page.tsx`) foi atualizada para consumir os textos estáticos do componente `<PageHeading>` (título e descrição) diretamente da estrutura do `dictionary.ts`. Isso substitui o texto *hardcoded* "Data + privacy" e resolve a pendência arquitetural de alinhamento com as convenções de i18n do projeto.
+
+## [Atualização Recente] - Resiliência e Validação no Sitemap
+
+### Modificado
+- **Validação Estrita de Datas (Sitemap)**: O gerador de sitemap (`app/sitemap.ts`) foi refatorado para assegurar que apenas datas válidas sejam fornecidas aos mecanismos de busca. Utilizando o método `.isValid()` do *Moment.js*, o sistema agora verifica se a data informada nos metadados do post (`metadata.date`) é parseável (nos formatos esperados). Caso contrário, ele realiza um *fallback* inteligente e seguro para a data e hora atuais da build (variável `lastModified`), prevenindo o erro de geração de *"Invalid date"* no XML final.
+
+## [Atualização Recente] - Responsividade dos Banners no Componente Base
+
+### Modificado
+- **Responsividade dos Banners (Base)**: O componente `components/base.tsx` foi atualizado para gerenciar a responsividade condicional das seções de *Newsletter* e *Instagram*. O layout padrão agora flui em colunas (uma sobre a outra) em dispositivos menores que 1120px e altera dinamicamente para exibição lado-a-lado (linhas) em resoluções maiores, resolvendo a pendência deixada anteriormente.
+
+## [Atualização Recente] - Refatoração de Navegação e Estilização Ativa
+
+### Adicionado
+- **Estilização Ativa de Navegação**: Criação do componente cliente `components/header-nav.tsx` que utiliza `usePathname()` para aplicar dinamicamente o estilo de foco (cor azul, idêntica ao estado de _hover_) ao link correspondente à página atualmente acessada.
+
+### Modificado
+- **Centralização de Links de Navegação**: Extração da lista *hardcoded* de itens de navegação do componente `Header` para o arquivo de recursos central `resources/resources.ts`, integrando as definições do dicionário (i18n) conforme as diretrizes do projeto.
+- **Refatoração do Cabeçalho**: O componente `components/header.tsx` foi atualizado para consumir o novo `<HeaderNav />`, removendo a lógica excessiva do componente e resolvendo as pendências (TODOs) deixadas anteriormente.
+
 ## [Atualização Recente] - Refatoração de Layout e Otimizações de Componentes
 
 ### Adicionado

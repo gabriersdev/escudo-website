@@ -9,12 +9,22 @@ const lastModified = moment().format(appConfigs["datetime-format"]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = getPosts();
-
+  
   const postsUrls: MetadataRoute.Sitemap = posts.map((post) => {
-    const postDate = post.metadata.date 
-      ? moment(post.metadata.date, 'DD MMM YYYY').format(appConfigs["datetime-format"])
-      : lastModified;
-
+    let postDate = lastModified;
+    
+    if (post.metadata.date) {
+      const parsedDate = moment(post.metadata.date, 'DD MMM YYYY', 'pt-br', true);
+      if (parsedDate.isValid()) {
+        postDate = parsedDate.format(appConfigs["datetime-format"]);
+      } else {
+        const fallbackDate = moment(post.metadata.date);
+        if(fallbackDate.isValid()){
+          postDate = fallbackDate.format(appConfigs["datetime-format"]);
+        }
+      }
+    }
+    
     return {
       url: `${siteUrl}/${post.slug}`,
       lastModified: postDate,
@@ -22,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     };
   });
-
+  
   return [
     {
       url: siteUrl,

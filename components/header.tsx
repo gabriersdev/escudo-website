@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import {getPosts} from '@/libs/mdx';
 import {SearchModal} from './search-modal';
+import {HeaderNav} from './header-nav';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
 import Image from "next/image";
@@ -36,22 +37,7 @@ export function Header() {
         </div>
         
         {/* Bottom Navigation */}
-        <nav className="flex justify-center space-x-8 py-4 border-t border-gray-50 line-clamp-1">
-          {[
-            [dictionary.header.home, '/'],
-            [dictionary.header.about, '/about'],
-            [dictionary.header.authors, '/authors'],
-            [dictionary.header.collection, '/collection'],
-          ].map(([label, href], i, self) => (
-            <Link
-              key={i}
-              href={href}
-              className={"text-xs font-semibold text-gray-900 uppercase tracking-wide hover:text-blue-600 transition-colors " + ((i === self.length - 1) ? " hidden md:inline-block" : "")}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
+        <HeaderNav/>
       </div>
     </header>
   );

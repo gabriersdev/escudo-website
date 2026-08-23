@@ -4,7 +4,9 @@ import {dictionary} from "@/resources/dictionary";
 
 export function InstagramBanner() {
   return (
-    <section className="bg-[#9E48CF] bg-[url(/instagram-banner.png)] bg-no-repeat bg-cover bg-center text-white text-center mt-20 pb-0 mb-0 w-full border-y border-gray-700">
+    <section
+      className="bg-[#9E48CF] bg-[url(/instagram-banner.png)] bg-no-repeat bg-cover bg-center text-white text-center w-full rounded-xl border-0 flex items-center justify-center"
+    >
       <Link href={dictionary.instagram.link} target="_blank" rel="noopener noreferrer">
         <div className={"py-24"}>
           <div className="container mx-auto px-4 max-w-2xl">

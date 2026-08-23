@@ -26,12 +26,12 @@ export default async function Privacy() {
       <div className="flex flex-col lg:flex-row">
         <div className="w-full lg:flex-1 lg:pr-16">
           <PageHeading
-            title="Data + privacy"
-            description="Terms of service and privacy policy for our platform."
+            title={dictionary.privacy.title}
+            description={dictionary.privacy.description}
           />
           
           <div className="markdown-content">
-            <MDXRemote source={content} components={mdxComponents} />
+            <MDXRemote source={content} components={mdxComponents}/>
           </div>
         </div>
         

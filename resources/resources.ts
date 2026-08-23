@@ -5,6 +5,15 @@ const contacts = {
   "repo": "https://github.com/gabriersdev/escudo-website",
 }
 
+import { dictionary } from "./dictionary";
+
+const headerNavigation = [
+  [dictionary.header.home, '/'],
+  [dictionary.header.about, '/about'],
+  [dictionary.header.authors, '/authors'],
+  [dictionary.header.collection, '/collection'],
+];
+
 const appConfigs = {
   "app-name": "Escudo",
   "app-name-slug": "escudo-website",
@@ -35,6 +44,7 @@ const newsletterConfigs = {
 export {
   appConfigs,
   contacts,
+  headerNavigation,
   newsletterConfigs,
   numberConfigs,
   siteUrl,

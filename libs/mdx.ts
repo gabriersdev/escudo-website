@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import moment from 'moment';
+import { appConfigs } from '@/resources/resources';
+import { dictionary } from '@/resources/dictionary';
 
 export type PostMetadata = {
   title: string;
@@ -33,12 +36,16 @@ export function readMDXFile(filePath: string): PostData | null {
   
   const slug = path.basename(filePath, path.extname(filePath));
   
+  const wordCount = content.trim().split(/\s+/).length;
+  const time = Math.max(1, Math.ceil(wordCount / 200));
+  const autoReadTime = dictionary.post.readingTime.replace('{{time}}', time.toString());
+  
   const metadata: PostMetadata = {
     title: data.title || '',
     description: data.description || '',
-    date: data.date || new Date().toISOString(),
+    date: data.date || moment().toISOString(),
     author: data.author || 'The Journal',
-    readTime: data.readTime || '1 MIN READ',
+    readTime: data.readTime || autoReadTime,
     image: data.image || '',
     featured: data.featured || false,
     topic: data.topic || 'General',
@@ -53,10 +60,13 @@ export function getPosts(): PostData[] {
     .map((file) => readMDXFile(path.join(POSTS_DIR, file)))
     .filter((post): post is PostData => post !== null);
   
-  // Sort posts by date descending
-  return posts.sort((a, b) => {
-    return new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime();
-  });
+  // Sort posts by date descending and don't return posts with future dates
+  moment.locale(appConfigs.locale);
+  return posts
+    .sort((a, b) => {
+      return moment(b.metadata.date).valueOf() - moment(a.metadata.date).valueOf();
+    })
+    .filter((post: PostData) => moment(post.metadata.date).isSameOrBefore(moment()));
 }
 
 export function getPostBySlug(slug: string): PostData | null {

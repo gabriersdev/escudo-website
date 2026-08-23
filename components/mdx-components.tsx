@@ -1,4 +1,4 @@
-import { ImageGrid } from './image-grid';
+import {ImageGrid} from './image-grid';
 
 export const mdxComponents = {
   ImageGrid,
