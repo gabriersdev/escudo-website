@@ -1,6 +1,7 @@
 {
   "name": "escudo-website",
   "version": "1.4.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
