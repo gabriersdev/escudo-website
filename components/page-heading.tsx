@@ -22,6 +22,7 @@ const breadcrumbTranslations: Record<string, string> = {
 
 export function PageHeading({title, description}: PageHeadingProps) {
   const pathname = usePathname();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const segments = pathname ? pathname.split('/').filter(Boolean) : [];
   
   const [validLinks, setValidLinks] = useState<Record<string, boolean>>({});
@@ -35,7 +36,7 @@ export function PageHeading({title, description}: PageHeadingProps) {
         if (validLinks[href] === undefined) {
           try {
             results[href] = await checkPageExists(href);
-          } catch (e) {
+          } catch {
             results[href] = false;
           }
         }
@@ -49,7 +50,7 @@ export function PageHeading({title, description}: PageHeadingProps) {
     if (segments.length > 1) {
       checkLinks();
     }
-  }, [pathname, segments]);
+  }, [pathname, segments, validLinks]);
   
   return (
     <div className="mb-10">

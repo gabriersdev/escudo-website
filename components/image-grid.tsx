@@ -130,7 +130,6 @@ export function ImageGrid(props: ImageGridProps) {
             className="relative aspect-video overflow-hidden rounded-lg bg-gray-100 cursor-pointer group"
             onClick={() => setSelectedImage(src)}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <Image
               width={1000}
               height={1000}

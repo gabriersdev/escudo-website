@@ -54,7 +54,7 @@ export function NewsletterForm({variant = 'large'}: NewsletterFormProps) {
       
       setStatus('success');
       setEmail('');
-    } catch (error) {
+    } catch {
       setStatus('error');
       setErrorMessage(dictionary.newsletter.errorMessage);
     }

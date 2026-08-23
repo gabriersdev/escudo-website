@@ -33,7 +33,7 @@ const allowedExtensions = ['.js', '.jsx', '.ts', '.tsx'];
           console.log(`${absolutePath}:${lines}:1`);
           count++;
         }
-      } catch (readErr) {
+      } catch {
         // Ignora arquivos ilegíveis
       }
     }
