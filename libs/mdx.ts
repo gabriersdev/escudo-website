@@ -2,8 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import moment from 'moment';
-import { appConfigs } from '@/resources/resources';
-import { dictionary } from '@/resources/dictionary';
+import 'moment/locale/pt-br';
+import {appConfigs} from '@/resources/resources';
+import {dictionary} from '@/resources/dictionary';
 
 export type PostMetadata = {
   title: string;
@@ -61,12 +62,17 @@ export function getPosts(): PostData[] {
     .filter((post): post is PostData => post !== null);
   
   // Sort posts by date descending and don't return posts with future dates
-  moment.locale(appConfigs.locale);
+  moment.locale(appConfigs.locale.toLowerCase());
   return posts
     .sort((a, b) => {
-      return moment(b.metadata.date).valueOf() - moment(a.metadata.date).valueOf();
+      const dateA = moment(a.metadata.date, ['DD MMM YYYY', moment.ISO_8601], 'pt-br');
+      const dateB = moment(b.metadata.date, ['DD MMM YYYY', moment.ISO_8601], 'pt-br');
+      return dateB.valueOf() - dateA.valueOf();
     })
-    .filter((post: PostData) => moment(post.metadata.date).isSameOrBefore(moment()));
+    .filter((post: PostData) => {
+      const postDate = moment(post.metadata.date, ['DD MMM YYYY', moment.ISO_8601], 'pt-br');
+      return postDate.isValid() && postDate.isSameOrBefore(moment());
+    });
 }
 
 export function getPostBySlug(slug: string): PostData | null {

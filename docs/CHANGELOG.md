@@ -1,5 +1,11 @@
 # Changelog
 
+## [Atualização Recente] - Correção de Parseamento de Datas com Moment.js
+
+### Modificado
+- **Parseamento Explícito de Datas em MDX**: A função de leitura e listagem de postagens (`libs/mdx.ts`) foi corrigida para usar importação estática do locale `pt-br` do *Moment.js* e definir a máscara de formato explícita `['DD MMM YYYY', moment.ISO_8601]` durante o *parsing* da data de publicação (`metadata.date`). Isso resolve o problema onde matérias antigas com data em português (ex: "20 AGO 2026") resultavam em *Invalid Date* devido ao fallback silencioso para a API nativa de Date do JS, impedindo que as postagens fossem listadas na página inicial.
+- **Limpeza de TODO**: Remoção do comentário `TODO` pendente no post `como-funciona-um-antivirus-e-por-que-e-preciso-usar-um.mdx`, validando que a postagem agora é corretamente parseada, listada e renderizada.
+
 ## [Atualização Recente] - Manipulação Segura de Datas e Cálculo Autônomo de Leitura (MDX)
 
 ### Adicionado
