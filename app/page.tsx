@@ -1,5 +1,5 @@
 import React from 'react';
-import {getPosts, getTopics} from '@/libs/mdx';
+import {getPosts} from '@/libs/mdx';
 import Base from '@/components/base';
 import {AppSidebar} from '@/components/app-sidebar';
 import {FeaturedPost} from '@/components/featured-post';
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const posts = getPosts();
-  const topics = getTopics();
   
   const featuredPost = posts.find(p => p.metadata.featured) || posts[0];
   const otherPosts = posts.filter(p => p.slug !== featuredPost?.slug);

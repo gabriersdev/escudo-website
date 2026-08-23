@@ -2,7 +2,6 @@ import Link from 'next/link';
 import {getPosts} from '@/libs/mdx';
 import {SearchModal} from './search-modal';
 import {HeaderNav} from './header-nav';
-import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
 import Image from "next/image";
 
