@@ -1,6 +1,6 @@
 {
   "name": "escudo-website",
-  "version": "1.1.0",
+  "version": "1.4.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,7 +13,7 @@
     "cypress": "npx cypress run",
     "ci:test": "start-server-and-test dev http://localhost:5173 test",
     "test": "pwd",
-    "sync:version": "git pull --no-edit && node scripts/sync-version.js && git add package.json && git commit -m \"build: update version\""
+    "sync:version": "git pull origin master --no-edit && node scripts/sync-version.js && git add package.json && git commit -m \"build: update version\""
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
