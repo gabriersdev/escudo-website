@@ -48,7 +48,7 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "@commitlint/cli": "^21.2.2",
-    "@commitlint/config-conventional": "^19.0.0",
+    "@commitlint/config-conventional": "^21.2.2",
     "husky": "^9.1.7"
   },
   "overrides": {
