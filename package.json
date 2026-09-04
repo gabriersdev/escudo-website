@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
-    "@next/mdx": "^16.3.2",
+    "@next/mdx": "^16.3.4",
     "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",
