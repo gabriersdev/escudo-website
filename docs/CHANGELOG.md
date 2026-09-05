@@ -1,5 +1,13 @@
 # Changelog
 
+## [Atualização Recente] - Otimização de Imagens no Build (ImageGrid)
+
+### Adicionado
+- **Script de Prebuild para Download de Imagens**: Criação do script `scripts/download-images.js` e integração com a etapa `prebuild` do `package.json`. Esse script varre automaticamente os arquivos MDX durante o processo de build, identificando imagens remotas declaradas no componente e baixando-as para a pasta estática estrita `/public/image-grid/`.
+
+### Modificado
+- **Resolução Dinâmica de Caminhos (ImageGrid)**: O componente `ImageGrid` foi atualizado para interceptar URLs remotas brutas do repositório (GitHub) e reescrevê-las inteligentemente em tempo de execução para os respectivos caminhos locais no frontend (`/image-grid/...`). Isso preserva a integridade dos URLs originais nos arquivos MDX (fonte única de verdade) enquanto ativa o poder de otimização nativo estático e cache de imagens em base64 e WebP do motor do Next.js.
+
 ## [Atualização Recente] - Resolução de Erro no Script de Sincronização de Versão
 
 ### Modificado

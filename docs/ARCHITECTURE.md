@@ -13,6 +13,7 @@ O projeto utiliza Next.js com App Router. Os conteúdos das matérias são escri
 - **Registro Centralizado**: O arquivo `components/mdx-components.tsx` atua como um dicionário unificado, exportando todos os componentes liberados para uso global no Markdown.
 - **Componentes Interativos**:
   - `ImageGrid`: Componente *Client-side* (`"use client"`) desenvolvido para galerias de postagens. O componente recebe o parâmetro `urls` (string separada por vírgulas, contornando limitações conhecidas do compilador MDX com arrays nativos). Ele constrói um grid responsivo de imagens utilizando o componente nativo do Next.js (`next/image`), otimizado com *placeholders* em base64 (`blurDataURL`). Uma funcionalidade de *Lightbox* (visualização expandida da imagem via clique) é acionada aproveitando o controle de estado nativo da tag `<dialog>`, espelhando as mesmas otimizações semânticas documentadas para o `search-modal.tsx`.
+  - **Otimização de Build (ImageGrid)**: Mantendo as URLs originais nos arquivos `.mdx`, o projeto utiliza um gancho de `prebuild` no `package.json` para executar o utilitário `scripts/download-images.js`. Esse script varre o conteúdo MDX e baixa os ativos de mídia remotos (ex: GitHub Raw) diretamente para a pasta estática `public/image-grid/`. O próprio `ImageGrid` realiza a interceptação e reescrita semântica da URL em *Client-side*, permitindo a otimização de imagem através do `next/image` de forma transparente.
 
 ## Estrutura de Componentes
 Seguindo o design limpo:
