@@ -5,13 +5,13 @@ import {dictionary} from "@/resources/dictionary";
 export function InstagramBanner() {
   return (
     <section
-      className="bg-[#9E48CF] bg-[url(/instagram-banner.png)] bg-no-repeat bg-cover bg-center text-white text-center w-full rounded-xl border-0 flex items-center justify-center"
+      className="bg-[#9E48CF] bg-[url(/instagram-banner.png)] bg-no-repeat bg-cover bg-center text-white text-center w-full rounded-xl border-1 border-slate-950/10 flex items-center justify-center"
     >
       <Link href={dictionary.instagram.link} target="_blank" rel="noopener noreferrer">
         <div className={"py-24"}>
           <div className="container mx-auto px-4 max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <div className={"flex flex-wrap gap-x-3 gap-y-2 items-center justify-center"}>
+              <div className={"flex flex-wrap gap-x-3 gap-y-1 items-center justify-center"}>
                 <span>{dictionary.instagram.followUs}</span>
                 <div className={"flex flex-nowrap gap-0 items-center justify-center"}>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="32" height="32" fill="currentColor" className="bi bi-at mt-2 text-3xl md:text-4xl p-0">
