@@ -1,4 +1,4 @@
-const siteUrl = "https://escudo.sabara.com";
+const siteUrl = "https://escudo.sabara.app.br";
 
 const contacts = {
   "mail": "gabriel@lts.app.br",

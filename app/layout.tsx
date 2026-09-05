@@ -23,6 +23,19 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: appConfigs.title,
   description: appConfigs.description,
+  openGraph: {
+    title: appConfigs.title,
+    description: appConfigs.description,
+    url: siteUrl,
+    siteName: appConfigs["app-name"],
+    locale: appConfigs.locale.replace("-", "_"),
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: appConfigs.title,
+    description: appConfigs.description,
+  }
 };
 
 export default function RootLayout(
