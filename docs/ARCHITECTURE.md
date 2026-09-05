@@ -5,8 +5,9 @@ O projeto utiliza Next.js com App Router. Os conteúdos das matérias são escri
 ## Fluxo de Renderização MDX
 1. Os arquivos de conteúdo (matérias) são armazenados em `app/posts/` com a extensão `.mdx`.
 2. O utilitário `libs/mdx.ts` utiliza o pacote `gray-matter` para extrair os meta-dados (*Frontmatter*) e o corpo do texto de cada arquivo.
-3. A página de listagem `app/page.tsx` lê todos os posts, ordena-os por data e exibe resumos em componentes como `FeaturedPost` e `PostCard`.
-4. A página de leitura `app/[slug]/page.tsx` faz o matching dinâmico do *slug* na URL com o nome do arquivo, e usa o `next-mdx-remote` para compilar o conteúdo MDX para HTML.
+3. **Interceptação Pre-AST**: O texto bruto extraído é empurrado pela função `transformMdxContent`, encarregada de manipular e substituir estruturas cruciais do texto plano via Regex rigorosa sem colidir com componentes React ou URLs estritas do layout.
+4. A página de listagem `app/page.tsx` lê todos os posts, ordena-os por data e exibe resumos em componentes como `FeaturedPost` e `PostCard`.
+5. A página de leitura `app/[slug]/page.tsx` (assim como instâncias diretas de páginas institucionais com `MDXRemote`) faz o matching dinâmico, chamando a renderização segura do `next-mdx-remote` para compilar o conteúdo MDX formatado para HTML.
 
 ## Componentes Customizados no MDX
 - O projeto suporta a injeção de componentes React diretamente nos arquivos `.mdx` através da propriedade `components` do `next-mdx-remote` (injetado nas rotas dinâmicas e estáticas institucionais).
@@ -58,6 +59,11 @@ Utilizamos TailwindCSS. A formatação visual dos conteúdos MDX não utiliza pl
 - `app/sitemap.ts`: Rota especial do ecossistema Next.js (`MetadataRoute.Sitemap`) que intercepta requisições para `sitemap.xml`.
 - **Funcionamento**: A função de renderização coleta programaticamente todas as postagens publicadas através do método `getPosts()` e combina suas URLs (junto a rotas estáticas como a homepage e `/blog`) retornando um objeto iterável estruturado. O Next.js então formata esse retorno nativamente para o padrão XML de SEO utilizado pelos indexadores globais.
 - **Tratamento de Datas**: Assim como na geração de RSS, a extração do `lastModified` especifica explicitamente o formato `DD MMM YYYY` ao transformar a string do arquivo MDX, prevenindo o comportamento padrão instável do construtor de `Date` que gera avisos de *deprecation*.
+
+## Metadados e OpenGraph (SEO)
+- **Integração Nativa Next.js**: O site se aproveita da API de `Metadata` do Next.js (App Router) nos arquivos estritos `layout.tsx` e `page.tsx` para assegurar o funcionamento dos cards em redes sociais.
+- **Configuração no Layout Raiz**: O objeto `openGraph` principal (incluindo `type`, `locale`, `siteName` e `url`) e o fallback para `twitter` são deliberadamente declarados em `app/layout.tsx`. Sem essa declaração em nível de layout, as imagens automáticas definidas pela convenção de arquivos do Next.js (como o `opengraph-image.png`) podem falhar em renderizar ou ser descartadas por agregadores devido à falta de contexto semântico.
+- **Base de URL Estrita**: A variável `metadataBase` emprega rigidamente a constante `siteUrl` importada do dicionário `resources.ts`, assegurando que todas as tags geradas convirjam para URLs absolutas no ambiente de produção.
 
 ## Segurança (Newsletter)
 - **Componente Front-end e Armadilha (Honeypot)**: O formulário de inscrição em `components/newsletter.tsx` implementa um campo *honeypot* visualmente oculto (`opacity-0 absolute`). Robôs automatizados preenchem formulários ignorando o CSS, ativando a armadilha. Se o campo for preenchido, a requisição envia um hash inválido, prevenindo spam silenciosamente no front-end.

@@ -1,5 +1,22 @@
 # Changelog
 
+## [Atualização Recente] - Otimização de Metadados e OpenGraph
+
+### Modificado
+- **Integração de OpenGraph e Twitter Cards**: Adicionado o objeto `openGraph` e `twitter` ao `metadata` global em `app/layout.tsx` para assegurar que imagens estáticas (`opengraph-image.png`) carreguem corretamente e com contexto semântico ao compartilhar links em redes sociais (WhatsApp, LinkedIn, X).
+- **Adequação de Locale (OpenGraph)**: O valor do idioma (locale) configurado no `layout.tsx` agora sofre replace automático de `pt-BR` para `pt_BR`, resolvendo exigências do protocolo OpenGraph que demandam o uso de *underline*.
+
+## [Atualização Recente] - Renderização Global Inteligente do MDX (Caracteres Customizados)
+
+
+### Adicionado
+- **Utilitário de Transformação MDX (`transformMdxContent`)**: Criada uma função global em `libs/mdx.ts` projetada para manipular caracteres de texto puro de forma segura antes da compilação do AST (Abstract Syntax Tree) pelo MDX. Esse interceptador é utilizado para localizar e reescrever dinamicamente as ocorrências de barras soltas (`/`) substituindo-as por um `<span style="font-family: Arial">/</span>` customizado, garantindo formatação idêntica à aplicação React estrita (`lib/util.js`).
+- **Regex Resiliente para Conteúdos MDX**: O padrão de transformação emprega expressões regulares avançadas para garantir que links do Markdown (`[...](...)`), tags HTML de componentes (`<ImageGrid />`) e URLs absolutas puras (`https://...`) sejam propositalmente poupadas durante o *replace*, prevenindo o rompimento da quebra do parser do pacote `next-mdx-remote`.
+
+### Modificado
+- **Páginas Híbridas e MDX Institucional**: As rotas institucionais `app/about/page.tsx` e `app/privacy/page.tsx`, além dos conteúdos de rodapé dos posts em `app/[slug]/page.tsx` (que liam as matérias com o módulo *fs* cruçando as diretrizes), foram atualizadas em lote para envolver a string lida diretamente na função `transformMdxContent`. Com isso, a transformação de caracteres isolados vigora agora de forma coesa em todo o portal.
+
+
 ## [Atualização Recente] - Otimização de Imagens no Build (ImageGrid)
 
 ### Adicionado
