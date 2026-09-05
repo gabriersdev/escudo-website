@@ -12,6 +12,7 @@ import {appConfigs, siteUrl} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
 import {mdxComponents} from "@/components/mdx-components";
 import Image from "next/image";
+import {authors} from "@/resources/authors";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -124,8 +125,18 @@ export default async function Post({params}: PageProps) {
         {/* Post Header */}
         <header className="mb-12">
           <div className="text-[12px] uppercase tracking-wide mb-4 flex items-center flex-wrap gap-1">
-            <div><span className={"text-gray-500 font-medium"}>{dictionary.post.by}</span> <span className={" text-gray-900 font-semibold"}>{post.metadata.author}</span></div>
-            <div><span className={"text-gray-500 font-medium"}>{dictionary.post.in}</span> <span className={" text-[#2631FF] font-semibold"}>{post.metadata.topic}</span></div>
+            <div>
+              <span className={"text-gray-500 font-medium"}>{dictionary.post.by}</span>{" "}
+              <Link href={"/author/" + (authors.find(a => a.name === post.metadata.author)?.["slug"] ?? "#")}>
+                <span className={" text-gray-900 font-semibold"}>{post.metadata.author}</span>
+              </Link>
+            </div>
+            <div>
+              <span className={"text-gray-500 font-medium"}>{dictionary.post.in}</span>{" "}
+              <Link href={"/topic/" + (post.metadata.topic?.toLowerCase() ?? "")}>
+                <span className={" text-[#2631FF] font-semibold"}>{post.metadata.topic}</span>
+              </Link>
+            </div>
             <span className="text-blue-300">-</span>
             <span className={"text-gray-500"}>{post.metadata.date}</span>
           </div>

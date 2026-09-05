@@ -15,6 +15,7 @@ const breadcrumbTranslations: Record<string, string> = {
   topic: 'Tópico',
   about: 'Sobre',
   authors: 'Autores',
+  author: 'Autor',
   posts: 'Postagens',
   privacy: 'Privacidade',
   collection: 'Coleção'
