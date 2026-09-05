@@ -1,22 +1,22 @@
-# Journal Template
+# Escudo Website
 
-This project is a blog or journal template, based on the "Journal" theme for the Ghost platform.
+Este é o repositório principal do **Escudo Website**, um blog desenvolvido com Next.js (App Router) e MDX. O projeto é uma adaptação do tema "Journal" da plataforma Ghost.
 
-## About the Theme
+## Sobre o Projeto
 
-This project is an adaptation of the [Journal](https://journal.ghost.io/) theme for [Next.js](https://nextjs.org). The original theme was created for the [Ghost](https://ghost.org/) platform.
+O Escudo Website utiliza Next.js para entregar conteúdos estáticos em MDX com alta performance.
 
-- **Original Theme:** [Journal](https://journal.ghost.io/)
-- **Original Theme Author:** [Ghost](https://journal.ghost.io/author/ghost/)
-- **Reference/Inspiration for the Next.js version:** [ghost-theme-journal by marykuo](https://github.com/marykuo/ghost-theme-journal)
+- **Tecnologia Principal:** [Next.js](https://nextjs.org) (App Router)
+- **Tema Original Base:** [Journal](https://journal.ghost.io/) por [Ghost](https://ghost.org/)
+- **Referência para Next.js:** [ghost-theme-journal by marykuo](https://github.com/marykuo/ghost-theme-journal)
 
 ---
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Este é um projeto [Next.js](https://nextjs.org) inicializado com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Como Executar
 
-First, run the development server:
+Primeiro, inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
@@ -28,15 +28,15 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Você pode começar a editar a página modificando `app/page.tsx`. A página é atualizada automaticamente conforme você edita o arquivo.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Este projeto utiliza [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) para otimizar e carregar automaticamente a fonte [Geist](https://vercel.com/font).
 
-## Project Documentation
+## Documentação do Projeto
 
-To learn more about the project's architecture, rules, and conventions, please consult the documentation files in the `/docs` folder:
+Para saber mais sobre a arquitetura, regras e convenções do projeto, consulte os arquivos de documentação na pasta `/docs`:
 
 - [Architecture](./docs/ARCHITECTURE.md)
 - [Automatic Versioning](./docs/AUTOMATIC-VERSIONING.md)
@@ -45,17 +45,17 @@ To learn more about the project's architecture, rules, and conventions, please c
 - [Coding Guidelines](./docs/CODING-GUIDELINES.md)
 - [Commit Rules](./docs/COMMIT-RULES.md)
 
-## Learn More
+## Saiba Mais
 
-To learn more about Next.js, take a look at the following resources:
+Para saber mais sobre o Next.js, consulte os seguintes recursos:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Documentação do Next.js](https://nextjs.org/docs) - aprenda sobre os recursos e a API do Next.js.
+- [Aprenda Next.js](https://nextjs.org/learn) - um tutorial interativo de Next.js.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Você pode conferir o [repositório do Next.js no GitHub](https://github.com/vercel/next.js).
 
-## Deploy on Vercel
+## Deploy na Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+A maneira mais fácil de fazer o deploy do seu aplicativo Next.js é usar a [Plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Confira a [documentação de deploy do Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para mais detalhes.
