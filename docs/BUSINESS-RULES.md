@@ -5,7 +5,7 @@ Todo arquivo `.mdx` em `app/posts` DEVE conter os seguintes metadados em seu cab
 - `title`: (Obrigatório) Título da matéria.
 - `description`: (Obrigatório) Resumo da matéria, usado nos cards e na página inicial.
 - `date`: (Obrigatório) Data de publicação. DEVE seguir rigorosamente o formato `DD MMM YYYY` (ex: `28 JUL 2026`) para que o sistema consiga interpretá-la corretamente sem gerar erros de *fallback* na biblioteca de datas (`moment`).
-- `author`: (Opcional, Padrão = "The Journal") Autor da matéria. Deve corresponder a um autor cadastrado em `libs/authors.ts`.
+- `author`: (Opcional, Padrão = "The Journal") Autor(es) da matéria. Suporta um único autor, múltiplos autores separados por vírgula (ex: 'Autor 1, Autor 2'), ou em formato de array na propriedade secundária `authors`. Cada autor deve corresponder a um autor cadastrado em `libs/authors.ts`.
 - `readTime`: (Opcional, Padrão = "1 MIN READ") Tempo de leitura estimado.
 - `image`: (Opcional) URL da imagem de capa. Se não fornecida, exibe-se um placeholder genérico.
 - `featured`: (Opcional, booleano) Se verdadeiro (`true`), a matéria será exibida com destaque na página inicial (a primeira que tiver true é escolhida).
@@ -19,7 +19,7 @@ Todo arquivo `.mdx` em `app/posts` DEVE conter os seguintes metadados em seu cab
 ## Sistema de Autores
 - Todos os autores da plataforma devem estar centralizados no arquivo `libs/authors.ts`.
 - O sistema disponibiliza um diretório de autores em `/authors`.
-- Cada autor possui uma página individual gerada de forma dinâmica em `/author/[slug]`, que filtra e lista todos os posts cuja autoria coincida com o nome dele.
+- Cada autor possui uma página individual gerada de forma dinâmica em `/author/[slug]`, que filtra e lista todos os posts cuja autoria coincida com o nome dele. Em caso de posts em colaboração (múltiplos autores separados por vírgula), o post será listado na página de todos os autores envolvidos.
 - Na página individual de um autor, a `Sidebar` substitui o bloco "About" pelo perfil (nome, biografia, foto) do autor correspondente.
 - Nas páginas `/about` e `/authors`, a seção "About" da `Sidebar` é ocultada automaticamente para evitar redundância de informações.
 

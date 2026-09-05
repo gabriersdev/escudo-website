@@ -41,7 +41,7 @@ Utilizamos TailwindCSS. A formatação visual dos conteúdos MDX não utiliza pl
 ## Roteamento de Autores
 - `libs/authors.ts`: Configuração centralizada dos autores.
 - `app/authors/page.tsx`: Página que lista todos os autores cadastrados.
-- `app/author/[slug]/page.tsx`: Rota dinâmica (Next.js 15+) que lista os posts específicos de um autor. Reutiliza o componente `Sidebar`, porém injeta os dados do autor (foto, nome e bio) no lugar das informações gerais do "The Journal".
+- `app/author/[slug]/page.tsx`: Rota dinâmica (Next.js 15+) que lista os posts específicos de um autor (ou colaborações em que o autor esteja listado no array gerado a partir dos múltiplos autores separados por vírgula). Reutiliza o componente `Sidebar`, porém injeta os dados do autor (foto, nome e bio) no lugar das informações gerais do "The Journal".
 
 ## Centralização de Recursos (Single Source of Truth)
 - `resources/resources.ts`: Arquivo que atua como a única fonte da verdade para as configurações globais estáticas do sistema (nome do site, URLs, fuso horário, metadados de contato e configurações de formatação).

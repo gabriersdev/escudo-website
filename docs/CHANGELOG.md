@@ -1,5 +1,15 @@
 # Changelog
 
+## [Atualização Recente] - Suporte a Múltiplos Autores no MDX
+
+### Adicionado
+- **Suporte a Múltiplos Autores**: O parser de MDX (`libs/mdx.ts`) foi atualizado para interpretar múltiplos autores na propriedade `author` (separados por vírgula) ou através do array `authors`, viabilizando matérias com colaboração conjunta.
+- **Roteamento Dinâmico Estendido**: As páginas de autores (`/author/[slug]`) agora procuram correspondências usando a função `.some()`, garantindo que se o nome do autor constar na lista de autores do post, ele será listado no seu perfil corretamente.
+- **Componentização do Cabeçalho e Metadados**: O cabeçalho dos posts e os metadados JSON-LD/OpenGraph foram re-arquitetados para mapear a array completa de autores, dividindo-os com vírgulas e hiperlinks distintos para cada perfil envolvido.
+
+### Modificado
+- **Lógica de Fallback de Autores**: Todas as listagens, rotas (incluindo geração do feed `rss.xml`) e páginas (como a `app/[slug]/page.tsx`) agora contêm mecanismos seguros que formam dinamicamente a array `authors`, recuando inteligentemente à propriedade singular `author` preexistente (ou criando listas baseadas nos separadores por vírgulas) se necessário.
+
 ## [Atualização Recente] - Otimização de Metadados e OpenGraph
 
 ### Modificado
