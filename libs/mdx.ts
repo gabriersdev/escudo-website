@@ -10,7 +10,8 @@ export type PostMetadata = {
   title: string;
   description: string;
   date: string;
-  author: string;
+  author?: string;
+  authors?: string[];
   readTime: string;
   image?: string;
   featured?: boolean;
@@ -57,11 +58,15 @@ export function readMDXFile(filePath: string): PostData | null {
   const time = Math.max(1, Math.ceil(wordCount / 200));
   const autoReadTime = dictionary.post.readingTime.replace('{{time}}', time.toString());
   
+  const authorRaw = data.author || 'The Journal';
+  const authors = authorRaw.split(',').map((a: string) => a.trim());
+  
   const metadata: PostMetadata = {
     title: data.title || '',
     description: data.description || '',
     date: data.date || moment().toISOString(),
-    author: data.author || 'The Journal',
+    author: authorRaw,
+    authors: authors,
     readTime: data.readTime || autoReadTime,
     image: data.image || '',
     featured: data.featured || false,
@@ -69,7 +74,7 @@ export function readMDXFile(filePath: string): PostData | null {
   };
   
   const transformedContent = transformMdxContent(content);
-
+  
   return {metadata, content: transformedContent, slug};
 }
 

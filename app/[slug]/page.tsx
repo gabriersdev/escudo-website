@@ -45,7 +45,7 @@ export async function generateMetadata({params}: PageProps) {
       url: postUrl,
       siteName: appConfigs["app-name"],
       publishedTime: post.metadata.date,
-      authors: [post.metadata.author],
+      authors: post.metadata.authors || (post.metadata.author ? [post.metadata.author] : []),
       ...(post.metadata.image && {
         images: [
           {
@@ -96,10 +96,10 @@ export default async function Post({params}: PageProps) {
     description: post.metadata.description,
     image: post.metadata.image ? [`${siteUrl}${post.metadata.image}`] : [],
     datePublished: post.metadata.date,
-    author: {
+    author: (post.metadata.authors || (post.metadata.author ? [post.metadata.author] : [])).map(author => ({
       '@type': 'Person',
-      name: post.metadata.author,
-    },
+      name: author,
+    })),
     publisher: {
       '@type': 'Organization',
       name: appConfigs["app-name"],
@@ -127,9 +127,16 @@ export default async function Post({params}: PageProps) {
           <div className="text-[12px] uppercase tracking-wide mb-4 flex items-center flex-wrap gap-1">
             <div>
               <span className={"text-gray-500 font-medium"}>{dictionary.post.by}</span>{" "}
-              <Link href={"/author/" + (authors.find(a => a.name === post.metadata.author)?.["slug"] ?? "#")}>
-                <span className={" text-gray-900 font-semibold"}>{post.metadata.author}</span>
-              </Link>
+              {(post.metadata.authors || (post.metadata.author ? [post.metadata.author] : []))
+                .toSpliced(1)
+                .map((authorName, index, arr) => (
+                <React.Fragment key={authorName}>
+                  <Link href={"/author/" + (authors.find(a => a.name === authorName)?.["slug"] ?? "#")}>
+                    <span className={" text-gray-900 font-semibold"}>{authorName}</span>
+                  </Link>
+                  {index < arr.length - 1 && <span className="text-gray-500">, </span>}
+                </React.Fragment>
+              ))}
             </div>
             <div>
               <span className={"text-gray-500 font-medium"}>{dictionary.post.in}</span>{" "}
