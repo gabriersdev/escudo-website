@@ -17,9 +17,8 @@ const headerNavigation = [
 const appConfigs = {
   "app-name": "Escudo",
   "app-name-slug": "escudo-website",
-  "title": "Escudo - Educação em Segurança Cibernética para uso digital online",
-  "description": "As notícias, artigos e postagens do Escudo.",
-  
+  "title": "Escudo - Educação em Segurança Cibernética para uso digital online | Siga @escudo.ifmg no Instagram",
+  "description": "O projeto Escudo tem como objetivo conscientizar a comunidade externa sobre a importância de adotar práticas seguras no uso da internet. A iniciativa aborda os principais riscos presentes no ambiente digital e apresenta formas de prevenção para uma navegação mais segura e responsável. Aqui no nosso site, você pode conferir notícias, artigos e conteúdos do Escudo com mais detalhes e informações do que nas nossas publicações do Instagram.",
   "locale": "pt-BR",
   "timezone": "America/Sao_Paulo",
   "datetime-format": "YYYY-MM-DD HH:mm:ss",

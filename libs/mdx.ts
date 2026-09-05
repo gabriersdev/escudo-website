@@ -30,6 +30,22 @@ function getMDXFiles(dir: string): string[] {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
 }
 
+export function transformMdxContent(content: string): string {
+  // Substitui as barras (/) pelo span com fonte Arial, ignorando:
+  // 1. Tags HTML/Componentes JSX (<...>)
+  // 2. Links Markdown ([...](...))
+  // 3. URLs completas (http://... ou https://...)
+  return content.replace(
+    /(<[^>]+>)|(\[[^\]]+\]\([^)]+\))|(https?:\/\/[^\s]+)|(\/)/g,
+    (match, htmlTag, mdLink, url, slash) => {
+      if (slash) {
+        return `<span style={{ fontSize: "inherit", fontFamily: "Arial, sans-serif" }}>/</span>`;
+      }
+      return match;
+    }
+  );
+}
+
 export function readMDXFile(filePath: string): PostData | null {
   if (!fs.existsSync(filePath)) return null;
   const rawContent = fs.readFileSync(filePath, 'utf-8');
@@ -52,7 +68,9 @@ export function readMDXFile(filePath: string): PostData | null {
     topic: data.topic || 'General',
   };
   
-  return {metadata, content, slug};
+  const transformedContent = transformMdxContent(content);
+
+  return {metadata, content: transformedContent, slug};
 }
 
 export function getPosts(): PostData[] {

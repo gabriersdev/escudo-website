@@ -2,6 +2,7 @@ import React from 'react';
 import fs from 'fs';
 import path from 'path';
 import {MDXRemote} from 'next-mdx-remote/rsc';
+import {transformMdxContent} from '@/libs/mdx';
 import Base from '@/components/base';
 import {Metadata} from 'next';
 import {appConfigs} from "@/resources/resources";
@@ -28,8 +29,8 @@ export default async function Privacy() {
             description={dictionary.privacy.description}
           />
           
-          <div className="markdown-content">
-            <MDXRemote source={content} components={mdxComponents}/>
+          <div className="markdown-content max-w-3xl mx-auto">
+            <MDXRemote source={transformMdxContent(content)} components={mdxComponents}/>
           </div>
         </div>
         

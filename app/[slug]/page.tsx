@@ -4,7 +4,7 @@ import path from 'path';
 import Link from "next/link";
 import {notFound} from 'next/navigation';
 import {MDXRemote} from 'next-mdx-remote/rsc';
-import {getPostBySlug, getPosts} from '@/libs/mdx';
+import {getPostBySlug, getPosts, transformMdxContent} from '@/libs/mdx';
 import Base from '@/components/base';
 import {ShareButton} from '@/components/share-button';
 import {SocialShare} from '@/components/social-share';
@@ -164,7 +164,7 @@ export default async function Post({params}: PageProps) {
           </div>
           
           <div className="markdown-content opacity-75">
-            <MDXRemote source={guideContent} components={mdxComponents}/>
+            <MDXRemote source={transformMdxContent(guideContent)} components={mdxComponents}/>
           </div>
         
         </div>

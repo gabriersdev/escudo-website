@@ -17,3 +17,20 @@ export async function* getFiles(dir) {
     }
   }
 }
+
+export function renderText(text) {
+  if (typeof text !== "string") return text;
+  
+  return text.split(/(\/)/).map((part, index) =>
+    part === "/" ? (
+      <span
+        key={index}
+        style={{ fontSize: "inherit", fontFamily: "Arial, sans-serif" }}
+      >
+        /
+      </span>
+    ) : (
+      part
+    )
+  );
+}
