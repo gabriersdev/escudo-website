@@ -56,7 +56,14 @@ export function ImageGrid(props: ImageGridProps) {
         if (!errorMsg) {
           images = numbersToUse.map(num => {
             const name = props.fileName!.replace('[]', num.toString());
-            const baseUrl = props.baseUrl!.endsWith('/') ? props.baseUrl : `${props.baseUrl}/`;
+            let baseUrl: string = props.baseUrl!.endsWith('/') ? props.baseUrl! : `${props.baseUrl}/`;
+            
+            if (baseUrl.startsWith('https://raw.githubusercontent.com/')) {
+              const parts = baseUrl.split('/').filter(Boolean);
+              const folderName = parts[parts.length - 1];
+              baseUrl = `/image-grid/${folderName}/`;
+            }
+
             return `${baseUrl}${name}`;
           });
         }
