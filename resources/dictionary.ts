@@ -103,7 +103,7 @@ export const dictionary = {
     link: "https://instagram.com/escudo.ifmg",
   },
   subscribe: {
-    title: "Inscreva-se",
+    title: "Inscreva-se na nossa newsletter",
     description: "Inscreva-se em nossa newsletter.",
   }
 };

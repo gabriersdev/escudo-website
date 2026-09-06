@@ -63,7 +63,7 @@ export function ImageGrid(props: ImageGridProps) {
               const folderName = parts[parts.length - 1];
               baseUrl = `/image-grid/${folderName}/`;
             }
-
+            
             return `${baseUrl}${name}`;
           });
         }
@@ -175,6 +175,32 @@ export function ImageGrid(props: ImageGridProps) {
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+            
+            {/*TODO - implementar*/}
+            {/*Botão para voltar ao slide anterior, SE houver*/}
+            <button
+              onClick={() => {
+              }}
+              className="absolute top-50 right-50 sm:-top-8 sm:-right-8 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors backdrop-blur-sm"
+              aria-label=""
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+              </svg>
+            </button>
+            
+            {/*TODO - implementar*/}
+            {/*Botão para ir para o próximo slide, SE houver*/}
+            <button
+              onClick={() => {
+              }}
+              className="absolute top-50 right-50 sm:-top-8 sm:-right-8 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors backdrop-blur-sm"
+              aria-label=""
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
               </svg>
             </button>
           </div>
