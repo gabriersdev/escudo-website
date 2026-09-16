@@ -5,6 +5,7 @@ import {NewsletterForm} from './newsletter';
 import {appConfigs} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
 import Image from "next/image";
+import resourcesContent from "@/resources/resources-content";
 
 type SidebarProps = {
   features?: { title: string; date: string; readTime: string; slug: string; description: string }[];
@@ -15,7 +16,7 @@ type SidebarProps = {
 
 function SidebarAbout({author}: { author?: SidebarProps['author'] }) {
   return (
-    <section className="mb-12">
+    <section>
       <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-6 border-b border-gray-100 pb-2">
         {author ? dictionary.sidebar.aboutAuthor : dictionary.sidebar.about}
       </h3>
@@ -45,8 +46,10 @@ function SidebarFeatures({features}: { features: NonNullable<SidebarProps['featu
   
   return (
     <section>
-      <div className="mb-12">
-        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-6 border-b border-gray-100 pb-2">{dictionary.sidebar.features}</h3>
+      <div>
+        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-6 border-b border-gray-100 pb-2">
+          {dictionary.sidebar.features}
+        </h3>
         <div className="space-y-6">
           {features
             .toSpliced(3)
@@ -79,20 +82,30 @@ function SidebarTopics({topics}: { topics: NonNullable<SidebarProps['topics']> }
   return (
     <section>
       <div>
-        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-6 border-b border-gray-100 pb-2">{dictionary.sidebar.topics}</h3>
+        <div className={"pb-2 mb-6 border-b border-gray-100"}>
+          <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide">
+            {dictionary.sidebar.topics}
+          </h3>
+        </div>
         <div className="space-y-3">
           {topics
-            .toSorted((a, b) => b.count - a.count)
+            .toSorted((a, b) =>
+              b.count - a.count ||
+              a.name.localeCompare(b.name)
+            )
             .toSpliced(5)
             .map((topic, i) => (
               <div key={i} className="group cursor-pointer hover:bg-gray-50 p-2 rounded -mx-2 transition-colors">
-                <Link href={`/topic/${topic.name.toLowerCase().replace(' ', '-')}`} className="font-semibold text-sm group-hover:text-blue-600 transition-colors w-full">
+                <Link
+                  href={`/topic/${topic.name.toLowerCase().replace(' ', '-')}`}
+                  className="font-semibold text-sm group-hover:text-blue-600 transition-colors w-full"
+                >
                   <div className={"flex items-center justify-between"}>
                     {topic.name}
                     
                     <span className="text-sm font-medium text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full text-nowrap">
-                  {topic.count} {topic.count === 1 ? dictionary.sidebar.post : dictionary.sidebar.posts}
-                </span>
+                      {topic.count} {topic.count === 1 ? dictionary.sidebar.post : dictionary.sidebar.posts}
+                    </span>
                   </div>
                 </Link>
               </div>
@@ -103,11 +116,51 @@ function SidebarTopics({topics}: { topics: NonNullable<SidebarProps['topics']> }
   );
 }
 
+// TODO - implementar obtenção das propriedades de dictionary.ts
+function SidebarResources() {
+  return (
+    <section>
+      <div>
+        <div className={"pb-2 mb-6 border-b border-gray-100"}>
+          <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide">
+            Recursos
+          </h3>
+        </div>
+        <div className="space-y-3">
+          {
+            resourcesContent
+              .toSorted((a, b) => a[0].localeCompare(b[0]))
+              .map((rc, index) => (
+                <div
+                  key={index}
+                  className="group cursor-pointer hover:bg-gray-50 p-2 rounded -mx-2 transition-colors"
+                >
+                  <Link
+                    href={rc[1]}
+                    rel={"noreferrer noopener"}
+                    target={"_blank"}
+                    className="font-semibold text-sm group-hover:text-blue-600 transition-colors w-full"
+                  >
+                    <div className={"flex items-center justify-between"}>
+                      <span className={"line-clamp-1"}>{rc[0]}</span>
+                    </div>
+                  </Link>
+                </div>
+              ))
+          }
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export function Sidebar({features = [], topics = [], author, hideAbout = false}: SidebarProps) {
   return (
-    <aside className="w-full lg:w-80 flex-shrink-0 lg:pl-10 lg:border-l border-gray-100 mt-16 lg:mt-0">
-      {!hideAbout && <SidebarAbout author={author}/>}
+    <aside className="w-full lg:w-80 flex-shrink-0 lg:pl-10 lg:border-l border-gray-100 mt-16 lg:mt-0 flex flex-col gap-12">
+      {!hideAbout && <SidebarAbout author={author}/>
+      }
       <SidebarFeatures features={features}/>
+      <SidebarResources/>
       <SidebarTopics topics={topics}/>
     </aside>
   );

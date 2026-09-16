@@ -8,6 +8,17 @@ type SocialShareProps = {
   title: string;
 };
 
+function Tooltip({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <span className="relative group">
+      {children}
+      <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-small text-white opacity-0 transition-opacity group-hover:opacity-100">
+        {label}
+      </span>
+    </span>
+  );
+}
+
 export function SocialShare({title}: SocialShareProps) {
   const [url, setUrl] = useState('');
   const [isCopied, setIsCopied] = useState(false);
@@ -108,37 +119,39 @@ export function SocialShare({title}: SocialShareProps) {
   return (
     <div className="mt-3 flex flex-wrap gap-1">
       {socials.map((social) => (
-        <Link
-          key={social.name}
-          href={social.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={social.onClick}
-          className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${social.color}`}
-          title={`${dictionary.share.shareOn} ${social.name}`}
-          aria-label={`${dictionary.share.shareOn} ${social.name}`}
-        >
-          {social.icon}
-        </Link>
+        <Tooltip key={social.name} label={`${dictionary.share.shareOn} ${social.name}`}>
+          <Link
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={social.onClick}
+            className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${social.color}`}
+            aria-label={`${dictionary.share.shareOn} ${social.name}`}
+          >
+            {social.icon}
+          </Link>
+        </Tooltip>
       ))}
-      <button
-        onClick={handleCopyUrl}
-        className={`w-10 h-10 rounded-full flex items-center justify-center transition-transform ${
-          isCopied ? 'bg-green-500' : 'bg-gray-700 hover:bg-gray-800'
-        }`}
-        title={dictionary.share.shareLink}
-        aria-label={dictionary.share.shareLink}
-      >
-        {isCopied ? (
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-white">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/>
-          </svg>
-        ) : (
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-white">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
-          </svg>
-        )}
-      </button>
+      
+      <Tooltip label={dictionary.share.shareLink}>
+        <button
+          onClick={handleCopyUrl}
+          className={`w-10 h-10 rounded-full flex items-center justify-center transition-transform ${
+            isCopied ? 'bg-green-500' : 'bg-gray-700 hover:bg-gray-800'
+          }`}
+          aria-label={dictionary.share.shareLink}
+        >
+          {isCopied ? (
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-white">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/>
+            </svg>
+          ) : (
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-white">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+            </svg>
+          )}
+        </button>
+      </Tooltip>
     </div>
   );
 }

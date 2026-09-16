@@ -1,5 +1,40 @@
 # Changelog
 
+## [Atualização Recente] - Suporte a Múltiplos Autores no MDX
+
+### Adicionado
+- **Suporte a Múltiplos Autores**: O parser de MDX (`libs/mdx.ts`) foi atualizado para interpretar múltiplos autores na propriedade `author` (separados por vírgula) ou através do array `authors`, viabilizando matérias com colaboração conjunta.
+- **Roteamento Dinâmico Estendido**: As páginas de autores (`/author/[slug]`) agora procuram correspondências usando a função `.some()`, garantindo que se o nome do autor constar na lista de autores do post, ele será listado no seu perfil corretamente.
+- **Componentização do Cabeçalho e Metadados**: O cabeçalho dos posts e os metadados JSON-LD/OpenGraph foram re-arquitetados para mapear a array completa de autores, dividindo-os com vírgulas e hiperlinks distintos para cada perfil envolvido.
+
+### Modificado
+- **Lógica de Fallback de Autores**: Todas as listagens, rotas (incluindo geração do feed `rss.xml`) e páginas (como a `app/[slug]/page.tsx`) agora contêm mecanismos seguros que formam dinamicamente a array `authors`, recuando inteligentemente à propriedade singular `author` preexistente (ou criando listas baseadas nos separadores por vírgulas) se necessário.
+
+## [Atualização Recente] - Otimização de Metadados e OpenGraph
+
+### Modificado
+- **Integração de OpenGraph e Twitter Cards**: Adicionado o objeto `openGraph` e `twitter` ao `metadata` global em `app/layout.tsx` para assegurar que imagens estáticas (`opengraph-image.png`) carreguem corretamente e com contexto semântico ao compartilhar links em redes sociais (WhatsApp, LinkedIn, X).
+- **Adequação de Locale (OpenGraph)**: O valor do idioma (locale) configurado no `layout.tsx` agora sofre replace automático de `pt-BR` para `pt_BR`, resolvendo exigências do protocolo OpenGraph que demandam o uso de *underline*.
+
+## [Atualização Recente] - Renderização Global Inteligente do MDX (Caracteres Customizados)
+
+
+### Adicionado
+- **Utilitário de Transformação MDX (`transformMdxContent`)**: Criada uma função global em `libs/mdx.ts` projetada para manipular caracteres de texto puro de forma segura antes da compilação do AST (Abstract Syntax Tree) pelo MDX. Esse interceptador é utilizado para localizar e reescrever dinamicamente as ocorrências de barras soltas (`/`) substituindo-as por um `<span style="font-family: Arial">/</span>` customizado, garantindo formatação idêntica à aplicação React estrita (`lib/util.js`).
+- **Regex Resiliente para Conteúdos MDX**: O padrão de transformação emprega expressões regulares avançadas para garantir que links do Markdown (`[...](...)`), tags HTML de componentes (`<ImageGrid />`) e URLs absolutas puras (`https://...`) sejam propositalmente poupadas durante o *replace*, prevenindo o rompimento da quebra do parser do pacote `next-mdx-remote`.
+
+### Modificado
+- **Páginas Híbridas e MDX Institucional**: As rotas institucionais `app/about/page.tsx` e `app/privacy/page.tsx`, além dos conteúdos de rodapé dos posts em `app/[slug]/page.tsx` (que liam as matérias com o módulo *fs* cruçando as diretrizes), foram atualizadas em lote para envolver a string lida diretamente na função `transformMdxContent`. Com isso, a transformação de caracteres isolados vigora agora de forma coesa em todo o portal.
+
+
+## [Atualização Recente] - Otimização de Imagens no Build (ImageGrid)
+
+### Adicionado
+- **Script de Prebuild para Download de Imagens**: Criação do script `scripts/download-images.js` e integração com a etapa `prebuild` do `package.json`. Esse script varre automaticamente os arquivos MDX durante o processo de build, identificando imagens remotas declaradas no componente e baixando-as para a pasta estática estrita `/public/image-grid/`.
+
+### Modificado
+- **Resolução Dinâmica de Caminhos (ImageGrid)**: O componente `ImageGrid` foi atualizado para interceptar URLs remotas brutas do repositório (GitHub) e reescrevê-las inteligentemente em tempo de execução para os respectivos caminhos locais no frontend (`/image-grid/...`). Isso preserva a integridade dos URLs originais nos arquivos MDX (fonte única de verdade) enquanto ativa o poder de otimização nativo estático e cache de imagens em base64 e WebP do motor do Next.js.
+
 ## [Atualização Recente] - Resolução de Erro no Script de Sincronização de Versão
 
 ### Modificado

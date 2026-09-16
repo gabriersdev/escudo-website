@@ -5,16 +5,21 @@ Todo arquivo `.mdx` em `app/posts` DEVE conter os seguintes metadados em seu cab
 - `title`: (Obrigatório) Título da matéria.
 - `description`: (Obrigatório) Resumo da matéria, usado nos cards e na página inicial.
 - `date`: (Obrigatório) Data de publicação. DEVE seguir rigorosamente o formato `DD MMM YYYY` (ex: `28 JUL 2026`) para que o sistema consiga interpretá-la corretamente sem gerar erros de *fallback* na biblioteca de datas (`moment`).
-- `author`: (Opcional, Padrão = "The Journal") Autor da matéria. Deve corresponder a um autor cadastrado em `libs/authors.ts`.
+- `author`: (Opcional, Padrão = "The Journal") Autor(es) da matéria. Suporta um único autor, múltiplos autores separados por vírgula (ex: 'Autor 1, Autor 2'), ou em formato de array na propriedade secundária `authors`. Cada autor deve corresponder a um autor cadastrado em `libs/authors.ts`.
 - `readTime`: (Opcional, Padrão = "1 MIN READ") Tempo de leitura estimado.
 - `image`: (Opcional) URL da imagem de capa. Se não fornecida, exibe-se um placeholder genérico.
 - `featured`: (Opcional, booleano) Se verdadeiro (`true`), a matéria será exibida com destaque na página inicial (a primeira que tiver true é escolhida).
 - `topic`: (Opcional, Padrão = "General") A categoria/tópico ao qual a matéria pertence.
 
+## SEO e Metadados Globais (OpenGraph)
+- **Centralização de OpenGraph**: Para que os cards de redes sociais (WhatsApp, LinkedIn, Twitter/X, etc) renderizem corretamente as imagens e informações do site, as definições principais de OpenGraph (como `type`, `siteName` e `locale`) e `twitter` devem estar **declaradas nativamente no `layout.tsx` principal**. 
+- **Locale**: O OpenGraph requer obrigatoriamente que a região (locale) contenha um *underline* (`_`) em vez de traço (`-`). O valor provindo de `appConfigs.locale` (`pt-BR`) sofre substituição (replace) direto na configuração do Layout para garantir compatibilidade.
+- **URL Base Absoluta**: A propriedade `metadataBase` deve ser invariavelmente carregada da constante global `siteUrl` (`resources.ts`) para que a imagem estática `opengraph-image.png` resolva corretamente em ambientes de produção.
+
 ## Sistema de Autores
 - Todos os autores da plataforma devem estar centralizados no arquivo `libs/authors.ts`.
 - O sistema disponibiliza um diretório de autores em `/authors`.
-- Cada autor possui uma página individual gerada de forma dinâmica em `/author/[slug]`, que filtra e lista todos os posts cuja autoria coincida com o nome dele.
+- Cada autor possui uma página individual gerada de forma dinâmica em `/author/[slug]`, que filtra e lista todos os posts cuja autoria coincida com o nome dele. Em caso de posts em colaboração (múltiplos autores separados por vírgula), o post será listado na página de todos os autores envolvidos.
 - Na página individual de um autor, a `Sidebar` substitui o bloco "About" pelo perfil (nome, biografia, foto) do autor correspondente.
 - Nas páginas `/about` e `/authors`, a seção "About" da `Sidebar` é ocultada automaticamente para evitar redundância de informações.
 
@@ -42,7 +47,7 @@ O sistema mantém uma listagem XML padronizada de URLs dinamicamente atualizada 
 - **Indexação Limpa**: O sitemap prioriza o uso estrito do domínio canônico (o `siteUrl`), garantindo que barras extras de concatenação ou domínios inconsistentes não provoquem quebras de link ou duplicidade SEO.
 
 ## Formatação Visual dos Posts
-Todos os artigos escritos nos arquivos MDX utilizam o conjunto de regras globais definidas na classe `.markdown-content`. Novas postagens não exigem inclusão de classes embutidas em HTML, devendo utilizar puramente a notação padrão do Markdown (como `#` para títulos, `*` para listas, `> ` para citações, aspas tortas para código, etc), visto que o design system da página cuidará de estilizá-los perfeitamente no momento da renderização.
+Todos os artigos escritos nos arquivos MDX utilizam o conjunto de regras globais definidas na classe `.markdown-content`. Novas postagens não exigem inclusão de classes embutidas em HTML, devendo utilizar puramente a notação padrão do Markdown (como `#` para títulos, `*` para listas, `> ` para citações, aspas tortas para código, etc), visto que o design system da página cuidará de estilizá-los perfeitamente no momento da renderização. Adicionalmente, caracteres estruturais isolados (como a barra `/`) recebem transformação pré-renderização inteligente via interceptador MDX (convertendo-se para Arial), não sendo necessária e, estritamente recomendada contra, nenhuma formatação `<span font...>` arbitrária direta no conteúdo.
 
 ## Navegação e Compartilhamento de Posts
 - Ao final de cada leitura de post (`/[slug]`), o sistema exibe dinamicamente links para o "Post Anterior" (mais antigo cronologicamente) e "Próximo Post" (mais novo). Essa conta é feita com base na posição do post atual dentro do array gerado por `getPosts()`, que já vem ordenado descrescentemente por data.
@@ -69,3 +74,4 @@ Toda tentativa de inscrição na newsletter deve satisfazer três regras fundame
 - A injeção de componentes React dentro das postagens (ex: `ImageGrid`) DEVE prever resiliência contra falhas do motor de conversão do MDX. Por exemplo, parâmetros complexos como arrays literais (`[]`) tendem a causar quebra no compilador. Os componentes DEVEM aceitar propriedades em string (ex: `urls="img1,img2"`) e realizar o *split* internamente no *Client Component*.
 - O uso de imagens interativas nos posts DEVE ser nativamente otimizado com *lazy loading* e implementar placeholders em *Base64* leve (`blurDataURL`), melhorando a métrica de *Largest Contentful Paint (LCP)* e evitando *Cumulative Layout Shift (CLS)*.
 - Modais e expansões de mídia (*Lightbox*) DEVEM utilizar a tag HTML nativa `<dialog>`, mantendo total consistência arquitetural com a funcionalidade de `search-modal.tsx`.
+- **Otimização de Imagens Remotas**: Ao utilizar imagens armazenadas remotamente (ex: repositórios no GitHub Raw) em componentes customizados (`ImageGrid`), NÃO É PERMITIDO "chumbar" (hardcode) a URL modificada com caminhos relativos na raiz do MDX. O projeto adere estritamente à política de "Fonte Única de Verdade" (*Single Source of Truth*), conservando sempre a URL remota original e rastreável nos arquivos de publicação. A tradução do caminho da URL de forma local para ativação da otimização pelo motor do Next.js DEVE obrigatoriamente ser delegada a scripts de etapa de build (ex: pré-builds geradores na arquitetura de `package.json`) e inteligentemente interceptada pelo componente renderizador no cliente final.

@@ -4,7 +4,7 @@ import path from 'path';
 import Link from "next/link";
 import {notFound} from 'next/navigation';
 import {MDXRemote} from 'next-mdx-remote/rsc';
-import {getPostBySlug, getPosts} from '@/libs/mdx';
+import {getPostBySlug, getPosts, transformMdxContent} from '@/libs/mdx';
 import Base from '@/components/base';
 import {ShareButton} from '@/components/share-button';
 import {SocialShare} from '@/components/social-share';
@@ -12,6 +12,7 @@ import {appConfigs, siteUrl} from "@/resources/resources";
 import {dictionary} from "@/resources/dictionary";
 import {mdxComponents} from "@/components/mdx-components";
 import Image from "next/image";
+import {authors} from "@/resources/authors";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -44,7 +45,7 @@ export async function generateMetadata({params}: PageProps) {
       url: postUrl,
       siteName: appConfigs["app-name"],
       publishedTime: post.metadata.date,
-      authors: [post.metadata.author],
+      authors: post.metadata.authors || (post.metadata.author ? [post.metadata.author] : []),
       ...(post.metadata.image && {
         images: [
           {
@@ -95,10 +96,10 @@ export default async function Post({params}: PageProps) {
     description: post.metadata.description,
     image: post.metadata.image ? [`${siteUrl}${post.metadata.image}`] : [],
     datePublished: post.metadata.date,
-    author: {
+    author: (post.metadata.authors || (post.metadata.author ? [post.metadata.author] : [])).map(author => ({
       '@type': 'Person',
-      name: post.metadata.author,
-    },
+      name: author,
+    })),
     publisher: {
       '@type': 'Organization',
       name: appConfigs["app-name"],
@@ -124,8 +125,25 @@ export default async function Post({params}: PageProps) {
         {/* Post Header */}
         <header className="mb-12">
           <div className="text-[12px] uppercase tracking-wide mb-4 flex items-center flex-wrap gap-1">
-            <div><span className={"text-gray-500 font-medium"}>{dictionary.post.by}</span> <span className={" text-gray-900 font-semibold"}>{post.metadata.author}</span></div>
-            <div><span className={"text-gray-500 font-medium"}>{dictionary.post.in}</span> <span className={" text-[#2631FF] font-semibold"}>{post.metadata.topic}</span></div>
+            <div>
+              <span className={"text-gray-500 font-medium"}>{dictionary.post.by}</span>{" "}
+              {(post.metadata.authors || (post.metadata.author ? [post.metadata.author] : []))
+                .toSpliced(1)
+                .map((authorName, index, arr) => (
+                <React.Fragment key={authorName}>
+                  <Link href={"/author/" + (authors.find(a => a.name === authorName)?.["slug"] ?? "#")}>
+                    <span className={" text-gray-900 font-semibold"}>{authorName}</span>
+                  </Link>
+                  {index < arr.length - 1 && <span className="text-gray-500">, </span>}
+                </React.Fragment>
+              ))}
+            </div>
+            <div>
+              <span className={"text-gray-500 font-medium"}>{dictionary.post.in}</span>{" "}
+              <Link href={"/topic/" + (post.metadata.topic?.toLowerCase() ?? "")}>
+                <span className={" text-[#2631FF] font-semibold"}>{post.metadata.topic}</span>
+              </Link>
+            </div>
             <span className="text-blue-300">-</span>
             <span className={"text-gray-500"}>{post.metadata.date}</span>
           </div>
@@ -142,7 +160,7 @@ export default async function Post({params}: PageProps) {
         {/* Cover Image Placeholder */}
         <div className="w-full aspect-[2/1] bg-gray-100 rounded mb-16 flex items-center justify-center text-gray-300 overflow-hidden relative">
           {post.metadata.image ? (
-            <Image width={500} height={500} src={post.metadata.image} alt={post.metadata.title} className="w-full h-full object-cover"/>
+            <Image width={1500} height={1500} src={post.metadata.image} alt={post.metadata.title} className="w-full h-full object-cover"/>
           ) : (
             <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
               <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
@@ -158,13 +176,13 @@ export default async function Post({params}: PageProps) {
         {/* Internal Footer for post */}
         <div className="max-w-3xl mx-auto flex flex-col gap-8 mt-16">
           <div>
-            <span className={"text-gray-500 font-medium tracking-wide uppercase text-[12px]"}>{dictionary.post.share}</span>
+            <span className={"text-gray-500 font-medium tracking-wide text-sm"}>{dictionary.post.share}</span>
             <SocialShare title={post.metadata.title}/>
             <hr className="mt-8 border-gray-100 max-w-3xl mx-auto"/>
           </div>
           
           <div className="markdown-content opacity-75">
-            <MDXRemote source={guideContent} components={mdxComponents}/>
+            <MDXRemote source={transformMdxContent(guideContent)} components={mdxComponents}/>
           </div>
         
         </div>

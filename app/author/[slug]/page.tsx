@@ -27,7 +27,10 @@ export default async function AuthorPage({params}: { params: Promise<{ slug: str
     notFound();
   }
   
-  const posts = getPosts().filter(post => post.metadata.author === author.name || post.metadata.author.toUpperCase() === author.name.toUpperCase());
+  const posts = getPosts().filter(post => {
+    const postAuthors = post.metadata.authors || (post.metadata.author ? [post.metadata.author] : []);
+    return postAuthors.some(a => a === author.name || a.toUpperCase() === author.name.toUpperCase());
+  });
   const topics = getTopics();
   
   const features = posts.slice(0, 4).map(p => ({

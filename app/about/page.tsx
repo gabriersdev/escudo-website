@@ -2,6 +2,7 @@ import React from 'react';
 import fs from 'fs';
 import path from 'path';
 import {MDXRemote} from 'next-mdx-remote/rsc';
+import {transformMdxContent} from '@/libs/mdx';
 import Base from '@/components/base';
 import {AppSidebar} from '@/components/app-sidebar';
 import {PageHeading} from '@/components/page-heading';
@@ -29,7 +30,7 @@ export default async function About() {
           />
           
           <div className="markdown-content">
-            <MDXRemote source={content} components={mdxComponents}/>
+            <MDXRemote source={transformMdxContent(content)} components={mdxComponents}/>
           </div>
         </div>
         

@@ -17,7 +17,7 @@ export async function GET() {
           <guid isPermaLink="true">${postUrl}</guid>
           <pubDate>${pubDate}</pubDate>
           <description><![CDATA[${post.metadata.description}]]></description>
-          ${post.metadata.author ? `<author>${post.metadata.author}</author>` : ""}
+          ${(post.metadata.authors || (post.metadata.author ? [post.metadata.author] : [])).map(author => `<author>${author}</author>`).join("")}
         </item>
       `;
     })
