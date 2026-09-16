@@ -16,7 +16,24 @@ export function ImageGrid(props: ImageGridProps) {
   let images: string[] = [];
   let errorMsg: string | null = null;
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  
+  const goToPrev = () => {
+    setSelectedIndex(prev => {
+      const next = prev - 1;
+      setSelectedImage(images[next]);
+      return next;
+    });
+  };
+  
+  const goToNext = () => {
+    setSelectedIndex(prev => {
+      const next = prev + 1;
+      setSelectedImage(images[next]);
+      return next;
+    });
+  };
   
   if (props.baseUrl || props.fileName || props.range) {
     if (!props.baseUrl || !props.fileName || !props.range) {
@@ -110,6 +127,33 @@ export function ImageGrid(props: ImageGridProps) {
     return () => dialog.removeEventListener('close', handleClose);
   }, []);
   
+  useEffect(() => {
+    if (!selectedImage) return;
+    
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelectedIndex(prev => {
+          if (prev <= 0) return prev;
+          const next = prev - 1;
+          setSelectedImage(images[next]);
+          return next;
+        });
+      } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        setSelectedIndex(prev => {
+          if (prev >= images.length - 1) return prev;
+          const next = prev + 1;
+          setSelectedImage(images[next]);
+          return next;
+        });
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImage, images]);
+  
   if (errorMsg) {
     return (
       <div className="p-4 border-2 border-red-500 rounded my-8 text-black bg-white">
@@ -135,7 +179,7 @@ export function ImageGrid(props: ImageGridProps) {
           <div
             key={idx}
             className="relative aspect-video overflow-hidden rounded-lg bg-gray-100 cursor-pointer group"
-            onClick={() => setSelectedImage(src)}
+            onClick={() => { setSelectedImage(src); setSelectedIndex(idx); }}
           >
             <Image
               width={1000}
@@ -159,51 +203,51 @@ export function ImageGrid(props: ImageGridProps) {
         }}
       >
         {selectedImage && (
-          <div className="relative w-full h-full max-w-6xl flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-            <Image
-              width={1920}
-              height={1080}
-              src={selectedImage}
-              alt="Expanded view"
-              className="max-w-full max-h-full object-contain rounded-md  bg-white"
-              priority
-            />
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-0 right-0 sm:-top-8 sm:-right-8 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors backdrop-blur-sm"
-              aria-label="Close modal"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
+          <>
+            <div className="relative w-full h-full max-w-6xl flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+              <Image
+                width={1920}
+                height={1080}
+                src={selectedImage}
+                alt="Expanded view"
+                className="max-w-full max-h-full object-contain rounded-md  bg-white"
+                priority
+              />
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-0 right-0 sm:-top-8 sm:-right-8 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors backdrop-blur-sm"
+                aria-label="Close modal"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+
+            {selectedIndex > 0 && (
+              <button
+                onClick={(e) => { e.stopPropagation(); goToPrev(); }}
+                className="fixed left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/80 transition-colors backdrop-blur-sm"
+                aria-label="Imagem anterior"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                  <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                </svg>
+              </button>
+            )}
             
-            {/*TODO - implementar*/}
-            {/*Botão para voltar ao slide anterior, SE houver*/}
-            <button
-              onClick={() => {
-              }}
-              className="absolute top-50 right-50 sm:-top-8 sm:-right-8 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors backdrop-blur-sm"
-              aria-label=""
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-              </svg>
-            </button>
-            
-            {/*TODO - implementar*/}
-            {/*Botão para ir para o próximo slide, SE houver*/}
-            <button
-              onClick={() => {
-              }}
-              className="absolute top-50 right-50 sm:-top-8 sm:-right-8 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors backdrop-blur-sm"
-              aria-label=""
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
-              </svg>
-            </button>
-          </div>
+            {selectedIndex < images.length - 1 && (
+              <button
+                onClick={(e) => { e.stopPropagation(); goToNext(); }}
+                className="fixed right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/80 transition-colors backdrop-blur-sm"
+                aria-label="Próxima imagem"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                  <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                </svg>
+              </button>
+            )}
+          </>
         )}
       </dialog>
     </>

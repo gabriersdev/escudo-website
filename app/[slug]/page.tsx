@@ -176,7 +176,7 @@ export default async function Post({params}: PageProps) {
         {/* Internal Footer for post */}
         <div className="max-w-3xl mx-auto flex flex-col gap-8 mt-16">
           <div>
-            <span className={"text-gray-500 font-medium tracking-wide uppercase text-[12px]"}>{dictionary.post.share}</span>
+            <span className={"text-gray-500 font-medium tracking-wide text-sm"}>{dictionary.post.share}</span>
             <SocialShare title={post.metadata.title}/>
             <hr className="mt-8 border-gray-100 max-w-3xl mx-auto"/>
           </div>
