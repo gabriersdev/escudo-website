@@ -49,6 +49,7 @@ export const dictionary = {
   },
   post: {
     latest: "Última",
+    featured: 'Destaque',
     by: "Por",
     in: "em",
     share: "Compartilhar",
