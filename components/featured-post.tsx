@@ -11,7 +11,7 @@ export function FeaturedPost({slug, metadata}: FeaturedPostProps) {
   return (
     <div className="mb-16">
       <div className="text-xs font-bold text-blue-600 uppercase mb-3 flex items-center flex-wrap gap-1">
-        <span>{dictionary.post.latest}</span>
+        <span>{dictionary.post.featured}</span>
         <span className="text-blue-300">-</span>
         <span>{metadata.date}</span>
       </div>

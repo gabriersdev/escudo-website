@@ -8,7 +8,7 @@ type SocialShareProps = {
   title: string;
 };
 
-function Tooltip({ label, children }: { label: string; children: React.ReactNode }) {
+function Tooltip({label, children}: { label: string; children: React.ReactNode }) {
   return (
     <span className="relative group">
       {children}
