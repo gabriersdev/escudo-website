@@ -1,0 +1,76 @@
+---
+title: "Ransomware: como os ataques funcionam e como se proteger"
+description: "Entenda o que é ransomware, como esses ataques funcionam e se espalham, seus principais impactos e as medidas que podem ajudar a proteger seus dados."
+date: '01 OUT 2026'
+author: 'Time Escudo, Gabriel Ribeiro, Larissa Reis'
+topic: 'Ransomware'
+image: '/opengraph-ransomware.png'
+---
+
+# Ransomware: como os ataques funcionam e como se proteger
+
+Imagine chegar ao trabalho e descobrir que nenhum computador abre, que os arquivos estão inacessíveis e que uma mensagem na tela exige dinheiro para devolver o que é seu. Esse é o cotidiano de quem sofre um ataque de ransomware, uma das maiores ameaças à segurança digital. Com a transformação digital, empresas e governos passaram a depender de sistemas interconectados e de dados armazenados em rede. Isso trouxe agilidade e eficiência, mas também ampliou a superfície de ataque disponível para criminosos. O cibercrime deixou de ser obra de indivíduos isolados em busca de notoriedade e se tornou uma indústria global, organizada e lucrativa.
+
+O ransomware é um tipo de malware que bloqueia o acesso a arquivos, bancos de dados ou sistemas inteiros por meio de criptografia forte. Para devolver o acesso, os criminosos exigem um resgate (*ransom*), quase sempre em criptomoedas, que dificultam o rastreamento pelas autoridades. Ao contrário de ataques que agem em silêncio para espionar, o ransomware é barulhento e imediato: seu objetivo é paralisar a operação da vítima e pressioná-la a pagar.
+
+Essa história começou em 1989, com o AIDS Trojan, criado por Joseph Popp e distribuído em disquetes a participantes de uma conferência da Organização Mundial da Saúde sobre a doença. O programa ficava adormecido até a nonagésima reinicialização do computador. Depois, criptografava os nomes dos arquivos e exigia US$ 189, enviados a uma caixa postal no Panamá. A criptografia era tão rudimentar que especialistas logo criaram ferramentas para reverter o dano. Nas décadas seguintes, as ameaças foram raras, mas, a partir de 2005, surgiram variantes com algoritmos mais fortes, que tornavam a recuperação inviável sem a chave certa. O Bitcoin, a partir de 2009, completou o cenário ao permitir pagamentos difíceis de rastrear e impulsionar o modelo criminoso.
+
+Um ataque moderno costuma seguir uma sequência estruturada. Tudo começa com a intrusão inicial, que ocorre com frequência por e-mails de *phishing* que induzem a vítima a entregar credenciais ou abrir anexos maliciosos. Outras portas de entrada são downloads infectados, falhas em softwares desatualizados e acessos remotos (RDP) expostos à internet com senhas fracas. Uma vez dentro, o invasor entra na fase de movimentação lateral: mapeia a rede, localiza servidores críticos e sistemas de backup e, depois de roubar senhas e tokens de administradores, amplia seu controle de forma furtiva. É nesse momento que os dados costumam ser copiados para servidores dos criminosos. Só então vem a etapa final: o malware desativa o antivírus, apaga pontos de restauração, corrompe backups locais e, por fim, criptografa os arquivos com algoritmos como AES ou RSA, exibindo a nota de resgate.
+
+A cópia de dados antes da criptografia mostra como a extorsão evoluiu. No modelo simples, cobra-se apenas pela chave de descriptografia. Na dupla extorsão, os criminosos roubam informações sensíveis e ameaçam publicá-las se o pagamento não for feito. Assim, mesmo quem tem backup enfrenta o risco de vazamento. Na tripla extorsão, a pressão se estende a clientes, parceiros e fornecedores da vítima, multiplicando o potencial destrutivo do ataque.
+
+A frequência desses ataques também se explica pelo modelo de negócios que se formou em torno deles, o Ransomware-as-a-Service (RaaS). Nele, desenvolvedores especializados criam e mantêm o código malicioso e o oferecem, como se fosse um serviço em nuvem, a “afiliados” que conduzem os ataques. Os criadores lucram com assinaturas, taxas únicas ou uma porcentagem dos resgates, sem precisar se expor invadindo redes. O modelo permite que pessoas sem conhecimento avançado em engenharia de malware se concentrem na invasão e na extorsão.
+
+Os casos reais mostram como os ataques se aproveitam de falhas evitáveis. Em maio de 2017, o WannaCry se espalhou pelo mundo como um *worm* e atingiu organizações como FedEx, Renault, Telefónica e o sistema público de saúde britânico, o NHS, explorando máquinas Windows desatualizadas. A propagação foi interrompida no mesmo dia pelo pesquisador Marcus Hutchins, que percebeu, por engenharia reversa, que o malware consultava um endereço web específico antes de criptografar os arquivos e registrou esse domínio. A Microsoft liberou, de forma atípica, um patch de emergência para versões antigas do sistema. O episódio expôs o custo de ignorar atualizações de segurança.
+
+No Brasil, em agosto de 2021, as Lojas Renner tiveram seus servidores criptografados, com impacto no e-commerce, no aplicativo e nos serviços de cartão. A empresa isolou preventivamente seus sistemas e conseguiu retomar as operações restaurando backups que permaneceram intactos. O caso mostra o valor de cópias de segurança bem protegidas e de um plano de resposta ágil. Pouco depois, em outubro, foi a vez da CVC e do Submarino Viagens, cujos sistemas de reservas e vendas ficaram fora do ar por vários dias, com prejuízos financeiros diretos e danos à imagem perante clientes e investidores. A falta de gestão contínua de vulnerabilidades transformou uma falha técnica em paralisação de serviços essenciais.
+
+A defesa contra o ransomware depende de camadas que se complementam. A primeira é o backup, que não impede a infecção, mas permite restaurar as operações depois dela. A referência é a regra 3-2-1: manter três cópias dos dados, o original e dois backups, em dois tipos diferentes de mídia, com uma cópia fora do local. O ideal é que essa última cópia seja mantida totalmente desconectada da internet e da rede local, para que os criminosos não possam criptografá-la ou apagá-la remotamente. Também vale classificar os ativos e priorizar os dados críticos, sensíveis ou protegidos por lei.
+
+Como o phishing continua sendo a porta de entrada preferida, o fator humano também é decisivo. Treinamentos contínuos ajudam as pessoas a desconfiar de erros gramaticais, anexos inesperados e remetentes cujo domínio não corresponde ao da organização que dizem representar. Também ajuda passar o mouse sobre os links, sem clicar, para conferir o endereço real, e confirmar por outro canal oficial, como telefone ou mensagem interna, qualquer pedido fora do comum: transferências, troca de credenciais ou envio de dados sensíveis.
+
+A essas medidas somam-se a higiene básica de software e o controle rigoroso de acessos. Manter sistemas e programas atualizados, evitar software pirata ou de origem desconhecida e usar antivírus, em casa e nas empresas, fecha muitas das brechas exploradas pelos atacantes. Para o caso de a intrusão acontecer, a arquitetura *Zero Trust* parte do princípio de que nenhum usuário ou dispositivo merece confiança automática, dentro ou fora da rede, e verifica continuamente cada tentativa de acesso. A autenticação multifator (MFA) reforça essa lógica ao exigir, além da senha, um segundo fator, como um código dinâmico ou a biometria. Assim, mesmo que uma senha vaze, o invasor encontra uma barreira adicional e tem mais dificuldade de circular pela rede.
+
+Mesmo com boas defesas, é preciso estar preparado para o pior. O plano de resposta a incidentes deve existir antes da crise. Durante um ataque, a comunicação entre as equipes deve acontecer por canais paralelos à rede comprometida, como ligações por celular, para que os criminosos não acompanhem a estratégia de defesa. Os recursos em nuvem devem ser copiados e colocados em quarentena, viabilizando a perícia forense, e os sistemas afetados precisam ser isolados rapidamente, por software ou no nível do switch e, se necessário, com a desconexão física de cabos e do Wi-Fi. O desligamento forçado do equipamento é o último recurso, pois apaga a memória RAM e destrói evidências valiosas. A recuperação deve seguir uma ordem de prioridade previamente definida, com base nos serviços mais críticos da organização. Paralelamente, é preciso analisar EDR, antivírus e logs em busca de malwares precursores, como Bumblebee, Dridex e Anchor, que costumam abrir caminho para o ransomware, e mapear a rota da intrusão para fechar as brechas. Por fim, o monitoramento deve ser contínuo, com auditoria das contas do Active Directory, dos novos logins, das ferramentas de acesso remoto e do uso de utilitários administrativos como PowerShell e PsTools.
+
+Diante de um ataque consumado, a tentação de pagar o resgate é compreensível, mas o pagamento é fortemente desencorajado. Não há garantia de que a chave será entregue, o ambiente pode continuar comprometido e o dinheiro financia novos crimes. No Brasil, há ainda a dimensão legal: se o incidente comprometer dados pessoais, a organização precisa cumprir a Lei Geral de Proteção de Dados (LGPD), cujo artigo 46 exige medidas técnicas e administrativas para proteger essas informações. Havendo negligência, a empresa pode sofrer sanções e multas, precisa comunicar o incidente aos titulares e à autoridade competente e pode responder por danos materiais e morais.
+
+O ransomware prospera onde há sistemas desatualizados, backups pouco confiáveis e equipes despreparadas. Nenhum sistema operacional ou antivírus elimina o risco sozinho. A proteção exige backups isolados, atualizações em dia, autenticação forte, pessoas treinadas e um plano de resposta testado. Como o phishing segue sendo a principal porta de entrada, levar educação em segurança digital a empresas, escolas e universidades é uma das formas mais eficazes de reduzir o alcance desses criminosos.
+
+> O Kaspersky Rescue Disk pode ser utilizado para verificar e desinfectar computadores afetados por ransomware. [Para conhecer melhor a ferramenta, clique aqui.](https://support.kaspersky.com/krd/24/272239) [Para baixar o Kaspersky Rescue Disk, clique aqui.](https://www.kaspersky.com.br/downloads/free-rescue-disk)
+
+> Utilizamos inteligência artificial para aprimorar a redação deste texto, tornando a leitura mais clara e fluida. Todo o conteúdo, no entanto, foi revisado e fundamentado em fontes que corroboram as informações apresentadas.
+
+Confira o nosso post sobre o assunto:
+
+<ImageGrid
+  baseUrl="https://raw.githubusercontent.com/gabriersdev/escudo-archive/refs/heads/main/publications/i.ransomware"
+  fileName="ransomware-[].png"
+  range="[1, 15]"
+  altContext="Conheça o que é Ransomware e saiba como se proteger."
+/>
+
+**Fontes**:
+
+- [Ataque cibernético prejudica vendas da CVC há cinco dias (Diário do Grande ABC)](https://www.dgabc.com.br/Noticia/3781374/ataque-cibernetico-prejudica-vendas-da-cvc-ha-cinco-dias)
+- [CVC diz ter restaurado parte de seus sistemas comprometidos em ataque ransomware (Canaltech)](https://canaltech.com.br/seguranca/cvc-diz-ter-restaurado-parte-de-seus-sistemas-comprometidos-em-ataque-ransonware-198722/)
+- [Criptovirologia (Wikipédia)](https://pt.wikipedia.org/wiki/Criptovirologia)
+- [Evolution of Ransomware (IET Networks)](https://ietresearch.onlinelibrary.wiley.com/doi/epdf/10.1049/iet-net.2017.0207)
+- [Lojas Renner sai do ar após infecção com ransomware (TecMundo)](https://www.tecmundo.com.br/seguranca/223412-lojas-renner-sai-ar-infeccao-ransomware.htm)
+- [Ransomware: a evolução dos ataques na contemporaneidade e seus desafios para a segurança digital (Journal of Technology & Information)](http://www.jtni.com.br/index.php/JTnI/article/view/84/81)
+- [15 biggest ransomware attacks in history (Surfshark Blog)](https://surfshark.com/blog/biggest-ransomware-attacks)
+- [Ciberataque afeta computadores do Hospital Sírio-Libanês (IstoÉ Dinheiro)](https://istoedinheiro.com.br/ciberataque-afeta-computadores-hospital-sirio-libanes)
+- [A saga do ransomware (Blog Oficial da Kaspersky)](https://www.kaspersky.com.br/blog/history-of-ransomware/17280/)
+- [The bizarre story of the inventor of ransomware (CNN Business)](https://web.archive.org/web/20210516125654/https://edition.cnn.com/2021/05/16/tech/ransomware-joseph-popp/index.html)
+- [Por que o Brasil é o 4º maior alvo de ataques ransomware do mundo? (TI Inside)](https://tiinside.com.br/13/01/2024/por-que-o-brasil-e-o-4-maior-alvo-de-ataques-ransomware-do-mundo/)
+- [WannaCry no Brasil e no mundo (O Povo)](https://mais.opovo.com.br/jornal/economia/2017/05/wannacry-no-brasil-e-no-mundo.html)
+- [O que é Zero Trust? (Akamai)](https://www.akamai.com/pt/glossary/what-is-zero-trust)
+- [O que é MFA? (Amazon Web Services)](https://aws.amazon.com/pt/what-is/mfa/)
+- [Ransomware e cibersegurança: a informação ameaçada por ataques a dados (Revista Thesis Juris | Uninove)](https://periodicos.uninove.br/thesisjuris/article/view/16739)
+- [Como prevenir o ransomware (Fortinet)](https://www.fortinet.com/br/resources/cyberglossary/how-to-prevent-ransomware)
+- [Como evitar ransomware (Kaspersky)](https://www.kaspersky.com.br/resource-center/threats/how-to-prevent-ransomware)
+- [Método de backup de dados 3-2-1 (Kingston)](https://www.kingston.com/br/blog/data-security/321-data-backup-method)
+- [O que é anti-phishing (MetaCompliance)](https://www.metacompliance.com/pt/blog/phishing-e-ransomware/o-que-e-anti-phishing)
+- [Plano de resposta a ransomware (Object First)](https://objectfirst.com/pt/guides/ransomware/ransomware-response-plan/)
+- [Ransomware: origens, consequências e prevenção (Studies in Engineering and Exact Sciences)](https://ojs.studiespublicacoes.com.br/ojs/index.php/sees/article/view/2145)
+- [Os ataques ransomware e a camada de proteção em sistemas governamentais (Revista Científica Multidisciplinar Núcleo do Conhecimento)](https://www.nucleodoconhecimento.com.br/tecnologia/ataques-ransomware)
