@@ -13,7 +13,7 @@ export function PostCard({slug, metadata}: PostCardProps) {
         <h2 className="text-2xl md:text-[28px] font-semibold mb-3 group-hover:text-blue-600 transition-colors">
           {metadata.title}
         </h2>
-        <p className="text-base text-gray-600 leading-relaxed mb-4 max-w-2xl">
+        <p className="text-base text-gray-600 leading-relaxed mb-4 max-w-2xl line-clamp-3">
           {metadata.description}
         </p>
         <div className="text-xs font-bold text-blue-600 uppercase flex items-center">
