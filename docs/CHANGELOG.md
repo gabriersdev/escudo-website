@@ -1,6 +1,9 @@
 # Changelog
 
-## [Atualização Recente] - Funcionalidade de Cancelamento de Inscrição (Unsubscribe)
+## [Atualização Recente] - Gerenciador de Newsletter Client-Side (HTML Generator)
+
+### Adicionado
+- **Gerenciador de Newsletter SPA (`public/newsletter-mails/index.html`)**: Aplicação SPA com Vue 3 e Bootstrap 5 (via CDN) que opera 100% do lado do cliente (sem dependência de rotas de API ou escrita em disco para compatibilidade em ambientes de produção). Permite edição em tempo real, alternância entre visualização Desktop e Mobile com nav-tabs centralizadas, cópia do código-fonte e download imediato do arquivo `.html`.
 
 ### Adicionado
 - **Página de Descadastro (`app/unsubscribe/page.tsx`)**: Implementação da página `/unsubscribe` espelhando a identidade visual e o layout da `/subscribe`, com preenchimento opcional do campo de e-mail via query param (`?email=...`) e metadados centralizados em `dictionary.ts`.
