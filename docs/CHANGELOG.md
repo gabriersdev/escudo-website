@@ -1,5 +1,15 @@
 # Changelog
 
+## [Atualização Recente] - Funcionalidade de Cancelamento de Inscrição (Unsubscribe)
+
+### Adicionado
+- **Página de Descadastro (`app/unsubscribe/page.tsx`)**: Implementação da página `/unsubscribe` espelhando a identidade visual e o layout da `/subscribe`, com preenchimento opcional do campo de e-mail via query param (`?email=...`) e metadados centralizados em `dictionary.ts`.
+- **Rota de API Segura (`app/api/unsubscribe/route.ts`)**: Criação do endpoint POST `/api/unsubscribe` que valida o hash de autenticação com AES-256-CBC contra bots e submete a solicitação de descadastro ao endpoint `UNSUBSCRIBE_NEWSLETTER_ENDPOINT`.
+- **Textos de Cancelamento no Dicionário (`resources/dictionary.ts`)**: Centralização de títulos, descrições, rótulos de botões e mensagens de validação/sucesso sob `dictionary.unsubscribe`.
+
+### Modificado
+- **Componentes de Newsletter Reutilizáveis (`components/newsletter.tsx`)**: Os componentes `NewsletterForm` e `NewsletterSection` foram refatorados para aceitar a propriedade `mode` (`'subscribe' | 'unsubscribe'`), compartilhando as validações de input, armadilha *honeypot*, estados de UI e estrutura responsiva entre os dois fluxos.
+
 ## [Atualização Recente] - Organização de Classes CSS e Tipografia da Newsletter
 
 ### Adicionado

@@ -106,5 +106,16 @@ export const dictionary = {
   subscribe: {
     title: "Inscreva-se na nossa newsletter",
     description: "Inscreva-se em nossa newsletter.",
+  },
+  unsubscribe: {
+    title: "Cancelar inscrição na newsletter",
+    description: "Sentiremos sua falta. Informe seu e-mail abaixo para parar de receber nossas mensagens.",
+    button: "Cancelar inscrição",
+    loading: "Cancelando...",
+    placeholder: "seuemail@email.com",
+    successMessage: "Sua inscrição foi cancelada com sucesso.",
+    errorMessage: "Ocorreu um erro ao cancelar a inscrição. Tente novamente.",
+    emailRequired: "Por favor, informe seu e-mail.",
+    emailInvalid: "Por favor, informe um e-mail válido.",
   }
 };

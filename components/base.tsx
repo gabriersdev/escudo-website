@@ -10,6 +10,7 @@ interface BaseProps {
   hideInstagram?: boolean;
   mainClassName?: string;
   wrapperClassName?: string;
+  marginBottom?: boolean
 }
 
 export default function Base(
@@ -18,7 +19,8 @@ export default function Base(
     hideNewsletter = false,
     hideInstagram = false,
     mainClassName = "container mx-auto px-4 max-w-6xl pt-16",
-    wrapperClassName = "bg-white min-h-screen text-gray-900 font-sans"
+    wrapperClassName = "bg-white min-h-screen text-gray-900 font-sans",
+    marginBottom = true,
   }: BaseProps
 ) {
   return (
@@ -28,7 +30,7 @@ export default function Base(
         {children}
       </main>
       
-      <div className={mainClassName + " flex gap-4 items-stretch mb-5 flex-col min-[1120px]:flex-row"}>
+      <div className={mainClassName + (marginBottom ? " mb-5" : "") + " flex gap-4 items-stretch  flex-col min-[1120px]:flex-row"}>
         {!hideInstagram && <InstagramBanner/>}
         {!hideNewsletter && <NewsletterSection/>}
       </div>
