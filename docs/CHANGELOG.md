@@ -1,5 +1,14 @@
 # Changelog
 
+## [Atualização Recente] - Organização de Classes CSS e Tipografia da Newsletter
+
+### Adicionado
+- **Assets de Ícone para E-mail**: Geração dos arquivos estáticos `public/icon-open-in-new.svg` e `public/icon-open-in-new.png` (renderizado em 36x36 para alta resolução / retina) para suportar renderização em todos os clientes de e-mail sem perda de elementos visuais.
+
+### Modificado
+- **Compatibilidade do Botão CTA (`draft.html`)**: O botão de ação principal foi centralizado com estrutura de tabela e elementos `inline-block`, substituindo o uso de `display: flex`, unidades `rem` e SVG inline pela tag `<img>` referenciando `icon-open-in-new.png` com alinhamento vertical e margens em pixels (`px`).
+- **Preservação de Fontes (`.arial`) e Tipografia**: Mantidas as declarações específicas da classe `.arial` para seções auxiliares e integradas com a fonte corporativa *Inter Tight*.
+
 ## [Atualização Recente] - Suporte a Múltiplos Autores no MDX
 
 ### Adicionado
