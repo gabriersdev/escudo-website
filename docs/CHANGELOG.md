@@ -1,5 +1,27 @@
 # Changelog
 
+## [Atualização Recente] - Gerenciador de Newsletter Client-Side (HTML Generator)
+
+### Adicionado
+- **Gerenciador de Newsletter SPA (`public/newsletter-mails/index.html`)**: Aplicação SPA com Vue 3 e Bootstrap 5 (via CDN) que opera 100% do lado do cliente (sem dependência de rotas de API ou escrita em disco para compatibilidade em ambientes de produção). Permite edição em tempo real, alternância entre visualização Desktop e Mobile com nav-tabs centralizadas, cópia do código-fonte e download imediato do arquivo `.html`.
+
+### Adicionado
+- **Página de Descadastro (`app/unsubscribe/page.tsx`)**: Implementação da página `/unsubscribe` espelhando a identidade visual e o layout da `/subscribe`, com preenchimento opcional do campo de e-mail via query param (`?email=...`) e metadados centralizados em `dictionary.ts`.
+- **Rota de API Segura (`app/api/unsubscribe/route.ts`)**: Criação do endpoint POST `/api/unsubscribe` que valida o hash de autenticação com AES-256-CBC contra bots e submete a solicitação de descadastro ao endpoint `UNSUBSCRIBE_NEWSLETTER_ENDPOINT`.
+- **Textos de Cancelamento no Dicionário (`resources/dictionary.ts`)**: Centralização de títulos, descrições, rótulos de botões e mensagens de validação/sucesso sob `dictionary.unsubscribe`.
+
+### Modificado
+- **Componentes de Newsletter Reutilizáveis (`components/newsletter.tsx`)**: Os componentes `NewsletterForm` e `NewsletterSection` foram refatorados para aceitar a propriedade `mode` (`'subscribe' | 'unsubscribe'`), compartilhando as validações de input, armadilha *honeypot*, estados de UI e estrutura responsiva entre os dois fluxos.
+
+## [Atualização Recente] - Organização de Classes CSS e Tipografia da Newsletter
+
+### Adicionado
+- **Assets de Ícone para E-mail**: Geração dos arquivos estáticos `public/icon-open-in-new.svg` e `public/icon-open-in-new.png` (renderizado em 36x36 para alta resolução / retina) para suportar renderização em todos os clientes de e-mail sem perda de elementos visuais.
+
+### Modificado
+- **Compatibilidade do Botão CTA (`draft.html`)**: O botão de ação principal foi centralizado com estrutura de tabela e elementos `inline-block`, substituindo o uso de `display: flex`, unidades `rem` e SVG inline pela tag `<img>` referenciando `icon-open-in-new.png` com alinhamento vertical e margens em pixels (`px`).
+- **Preservação de Fontes (`.arial`) e Tipografia**: Mantidas as declarações específicas da classe `.arial` para seções auxiliares e integradas com a fonte corporativa *Inter Tight*.
+
 ## [Atualização Recente] - Suporte a Múltiplos Autores no MDX
 
 ### Adicionado

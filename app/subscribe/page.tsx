@@ -12,7 +12,13 @@ export const metadata: Metadata = {
 
 export default function SubscribePage() {
   return (
-    <Base hideNewsletter={true} hideInstagram={true} wrapperClassName="text-gray-900 font-sans" mainClassName="bg-blue-600 pt-20 flex items-center justify-center">
+    <Base
+      marginBottom={false}
+      hideNewsletter={true}
+      hideInstagram={true}
+      wrapperClassName="text-gray-900 font-sans"
+      mainClassName="bg-blue-600 pt-20 flex items-center justify-center"
+    >
       <div className={"mb-16 mt-20 pb-28"}>
         <NewsletterSection/>
       </div>
