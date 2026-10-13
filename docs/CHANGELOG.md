@@ -1,5 +1,10 @@
 # Changelog
 
+## [Atualização Recente] - Revisão Técnica e Editorial de Artigo sobre Downloads e Integridade
+
+### Modificado
+- **Artigo sobre Riscos em Downloads (`app/posts/download-gratuito-o-filme-e-de-graca-o-prejuizo-pode-nao-ser.mdx`)**: Readequação do texto para neutralidade técnica, diferenciando explicitamente a legitimidade de tecnologias descentralizadas (BitTorrent, redes P2P e ecossistema open source) de agentes maliciosos que exploram canais não verificados. Foco em assinatura digital, integridade, hashes SHA-256 e segurança operacional.
+
 ## [Atualização Recente] - Gerenciador de Newsletter Client-Side (HTML Generator)
 
 ### Adicionado
