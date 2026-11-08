@@ -1,5 +1,10 @@
 # Changelog
 
+## [Atualização Recente] - Novo Artigo sobre Segurança para Idosos (Bloqueio INSS e BC Protege+)
+
+### Adicionado
+- **Artigo sobre Bloqueio de Empréstimos e Contas (`app/posts/como-bloquear-emprestimo-consignado-no-inss-e-contas-no-banco-central.mdx`)**: Publicação de guia prático voltado para a prevenção de fraudes contra aposentados e pensionistas, cobrindo o bloqueio de crédito consignado no Meu INSS, a ativação do bloqueio de abertura de novas contas via BC Protege+ (Banco Central), tabela comparativa das ferramentas e diretrizes contra engenharia social.
+
 ## [Atualização Recente] - Novo Artigo sobre o Sistema de Valores a Receber (SVR) e Prevenção a Fraudes
 
 ### Adicionado
