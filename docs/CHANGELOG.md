@@ -1,5 +1,10 @@
 # Changelog
 
+## [Atualização Recente] - Novo Artigo sobre o Sistema de Valores a Receber (SVR) e Prevenção a Fraudes
+
+### Adicionado
+- **Artigo sobre Valores a Receber (`app/posts/valores-a-receber-como-consultar-e-evitar-golpes.mdx`)**: Publicação de guia completo e informativo detalhando o funcionamento do Sistema de Valores a Receber (SVR) do Banco Central, a mecânica dos golpes de engenharia social associados, o passo a passo oficial de consulta/resgate via Conta Gov.br (Prata/Ouro e Pix), orientações para falecidos/empresas e tabela comparativa entre canais legítimos e armadilhas.
+
 ## [Atualização Recente] - Revisão Técnica e Editorial de Artigo sobre Downloads e Integridade
 
 ### Modificado
