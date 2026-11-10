@@ -1,5 +1,15 @@
 # Changelog
 
+## [Atualização Recente] - Novo Artigo sobre Segurança para Idosos (Bloqueio INSS e BC Protege+)
+
+### Adicionado
+- **Artigo sobre Bloqueio de Empréstimos e Contas (`app/posts/como-bloquear-emprestimo-consignado-no-inss-e-contas-no-banco-central.mdx`)**: Publicação de guia prático voltado para a prevenção de fraudes contra aposentados e pensionistas, cobrindo o bloqueio de crédito consignado no Meu INSS, a ativação do bloqueio de abertura de novas contas via BC Protege+ (Banco Central), tabela comparativa das ferramentas e diretrizes contra engenharia social.
+
+## [Atualização Recente] - Novo Artigo sobre o Sistema de Valores a Receber (SVR) e Prevenção a Fraudes
+
+### Adicionado
+- **Artigo sobre Valores a Receber (`app/posts/valores-a-receber-como-consultar-e-evitar-golpes.mdx`)**: Publicação de guia completo e informativo detalhando o funcionamento do Sistema de Valores a Receber (SVR) do Banco Central, a mecânica dos golpes de engenharia social associados, o passo a passo oficial de consulta/resgate via Conta Gov.br (Prata/Ouro e Pix), orientações para falecidos/empresas e tabela comparativa entre canais legítimos e armadilhas.
+
 ## [Atualização Recente] - Revisão Técnica e Editorial de Artigo sobre Downloads e Integridade
 
 ### Modificado
