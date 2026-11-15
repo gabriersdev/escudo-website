@@ -1,5 +1,15 @@
 # Changelog
 
+## [Atualização Recente] - Vínculo de Imagens OpenGraph Personalizadas aos Novos Artigos
+
+### Modificado
+- **Metadados OpenGraph nos Posts (`app/posts/*.mdx`)**: Atualização do campo `image` nos artigos de Valores a Receber (`/opengraph-valores-a-receber.png`), Bloqueio INSS/BC Protege+ (`/opengraph-bacen-inss.png`) e Limites do Pix (`/opengraph-limites-pix.png`), garantindo renderização dos banners visuais dedicados no compartilhamento de links.
+
+## [Atualização Recente] - Novo Artigo sobre Configuração de Limites do Pix e Prevenção a Fraudes
+
+### Adicionado
+- **Artigo sobre Limites do Pix (`app/posts/limites-do-pix-como-configurar-e-se-proteger-de-golpes.mdx`)**: Publicação de guia prático sobre segurança no Pix, abordando a mecânica de configuração de limites diurnos e noturnos no aplicativo do banco, a trava de carência de 24h a 48h para aumento de limite, o teto operacional do Banco Central, contatos de confiança e procedimentos de emergência via MED (Mecanismo Especial de Devolução).
+
 ## [Atualização Recente] - Novo Artigo sobre Segurança para Idosos (Bloqueio INSS e BC Protege+)
 
 ### Adicionado
