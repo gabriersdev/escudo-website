@@ -1,5 +1,10 @@
 # Changelog
 
+## [Atualização Recente] - Geração de Templates HTML de Newsletter para os Novos Artigos
+
+### Adicionado
+- **Templates HTML de Newsletter (`public/newsletter-mails/generated/*.html`)**: Criação dos arquivos de campanha `bacen-inss.html`, `valores-a-receber.html` e `limites-pix.html` seguindo o padrão estrutural de `draft.html`, com títulos, preheaders, imagens OpenGraph, resumos e links diretos para os respectivos artigos.
+
 ## [Atualização Recente] - Vínculo de Imagens OpenGraph Personalizadas aos Novos Artigos
 
 ### Modificado
